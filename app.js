@@ -28,7 +28,7 @@ app.use(
       maxAge: 2592000000 // 30 days in milliseconds
     },
     store: MongoStore.create({
-      mongoUrl: process.env.MONGO_URL || 'mongodb://localhost/basic-auth'
+      mongoUrl: process.env.MONGO_URL
     })
   }) 
 )
