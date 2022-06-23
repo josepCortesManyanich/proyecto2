@@ -23,10 +23,6 @@ router.get('/login', async (req, res, next) => {
 // @route   POST /auth/signup
 // @access  Public
 router.post('/signup', async (req, res, next) => {
-  // Check if user is already in DB by email (send error)
-  // Check if password meets requirements (send error)
-  // Hash password and create user
-  // Then redirect to login
   try {
   
   } catch (error) {
@@ -38,12 +34,8 @@ router.post('/signup', async (req, res, next) => {
 // @route   POST /auth/login
 // @access  Public
 router.post('/login', async (req, res, next) => {
-  // Check if user introduced all values
-  // Check if user exists in DB
-  // Check if the password matches the one in the DB
   try {
-    //...
-    // Remember to assign user to session cookie:
+    // When user is correctly authenticated, remember to assign user to session cookie:
     req.session.currentUser = user;
   } catch (error) {
     next(error);

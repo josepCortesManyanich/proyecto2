@@ -8,16 +8,24 @@ const logger = require('morgan');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
+// Routers require
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 
 const app = express();
 
+// cookies and loggers
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
 // For deployment
 app.set('trust proxy', 1);
 app.use(
   session({
-    name: 'movieApp',
+    name: 'project2-cookie',
     secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: false,
@@ -36,13 +44,6 @@ app.use(
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
-// cookies and loggers
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 // routes intro
 app.use('/', indexRouter);
