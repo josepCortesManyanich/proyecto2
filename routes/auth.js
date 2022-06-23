@@ -23,8 +23,13 @@ router.get('/login', async (req, res, next) => {
 // @route   POST /auth/signup
 // @access  Public
 router.post('/signup', async (req, res, next) => {
+  const { email, password, username } = req.body;
+  // ⚠️ Add validations!
   try {
-  
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const user = await User.create({ username, email, hashedPassword });
+    res.render('auth/profile', user)
   } catch (error) {
     next(error)
   }
@@ -34,9 +39,23 @@ router.post('/signup', async (req, res, next) => {
 // @route   POST /auth/login
 // @access  Public
 router.post('/login', async (req, res, next) => {
+  const { email, password } = req.body;
+  // ⚠️ Add more validations!
   try {
-    // When user is correctly authenticated, remember to assign user to session cookie:
-    req.session.currentUser = user;
+    // Remember to assign user to session cookie:
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      res.render('auth/login', { error: "User not found" });
+      return;
+    } else {
+      const match = await bcrypt.compare(password, user.hashedPassword);
+      if (match) {
+        req.session.currentUser = user;
+        res.redirect('/');
+      } else {
+        res.render('auth/login', { error: "Unable to authenticate user" });
+      }
+    }
   } catch (error) {
     next(error);
   }
