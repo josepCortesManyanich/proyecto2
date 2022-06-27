@@ -50,7 +50,8 @@ router.post('/edit/:productId', async(req,res,next) =>{
     const priceParsed = parseInt(price);
     const cbdParsed = parseInt(cbd);
     try {
-        const updatedProduct = await Product.findByIdAndUpdate(productId, { name, class: priceParsed, cbdParsed });
+        const updatedProduct = { name, class: priceParsed, cbdParsed} 
+        await Product.findByIdAndUpdate(productId, {})
         console.log('Just updated:', updatedProduct)
         res.redirect(`/edit/${productId}`)
     } catch (e) {
