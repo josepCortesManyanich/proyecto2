@@ -66,10 +66,12 @@ router.get('/delete/:productId', async (req, res, next) => {
 
     try {
         const { productId } = req.params;
-        await Product.findByIdAndDelete(productId);
+         const deletedP = await Product.findByIdAndDelete(productId);
         res.redirect('/Products')
+        console.log(deletedP)
     } catch (error) {
         next(error)
+        console.log(error);
     }
 })
 
