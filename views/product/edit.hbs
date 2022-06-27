@@ -1,0 +1,28 @@
+<h1>Editing: {{ title }}</h1>
+
+<form method="POST" action="/products/edit/{{ _id }}">
+
+  <label>Name</label>
+  <input type="text" name="name" value="{{ name }}"/>
+<br>
+  <label>Class</label>
+  <input type="text" name="class" value="{{ class }}"/>
+<br>
+  <label>Price</label>
+  <input type="Number" name="price" value="{{ price }}"/>
+<br>
+  <label>Cbd %</label>
+  <input type="Number" name="cbd" value="{{ cbd }}"/>
+<br>
+  <label>Image</label>
+  <input type="text" name="image" value="{{ image }}"/>
+<br>
+  <label>Description</label>
+  <input type="text" name="description" value="{{ description }}"/> 
+
+<br> 
+  <button type="submit">Edit</button>
+
+  <a href="/products/delete/{{this._id}}">Delete</a>
+
+</form>
