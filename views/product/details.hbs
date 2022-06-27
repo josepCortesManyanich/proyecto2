@@ -1,14 +1,18 @@
 <h1>Details {{this.name}}</h1>
     <div>
-    {{#each this._id}}
     {{this.name}}
+    <br>
     {{this.image}}
-    {{this.price}} <p>€/g</p>
-    {{this.cbd}} <p>%</p>
+    <br>
+    {{this.price}}<p>€/g</p>
+    <br>
+    {{this.cbd}}<p>%</p>
+    <br>
     {{this.description}}
+    <br>
   
   <a href="/products/edit/{{this._id}}">Edit</a>
 
   <a href="/products/delete/{{this._id}}">Delete</a>
-  {{/each}}
+  
   </div>
