@@ -26,7 +26,7 @@ body {
   background:#fff;
   position:relative;
   display:flex;
-  justify-content: center;
+  justify-content:center;
   align-items: center;
   border-radius: 10px;
 }
