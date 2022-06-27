@@ -31,4 +31,32 @@ router.post('/create', async(req,res,next) => {
     }
 })
 
+//Rutas de update
+
+router.get('/edit/:productId', async(req,res,next) => {
+    const{ productId } = req.params
+    try {
+        const productsfromDB = await Product.findById(productId)
+        res.render('product/edit', product)
+    } catch (e) {
+        console.log(e)
+        
+    }
+})
+
+router.post('/edit/:productId', async(req,res,next) =>{
+    const{ productId } = req.params
+    const {name, class: price, cbd} = req.body;
+    const priceParsed = parseInt(price);
+    const cbdParsed = parseInt(cbd);
+    try {
+        const updatedProduct = await Product.findByIdAndUpdate(productId, { name, class: priceParsed, cbdParsed });
+        console.log('Just updated:', updatedProduct)
+        res.redirect(`/edit/${productId}`)
+    } catch (e) {
+        console.log(e)
+    }
+
+})
+
 module.exports = router;
