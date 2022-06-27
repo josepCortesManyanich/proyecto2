@@ -60,4 +60,17 @@ router.post('/edit/:productId', async(req,res,next) =>{
 
 })
 
+// Rutas de Delete
+
+router.get('/delete/:productId', async (req, res, next) => {
+
+    try {
+        const { productId } = req.params;
+        await Product.findByIdAndDelete(productId);
+        res.redirect('/Products')
+    } catch (error) {
+        next(error)
+    }
+})
+
 module.exports = router;
