@@ -2,6 +2,16 @@ const router = require('express').Router();
 const app = require('../app');
 const Product = require('../models/producModel');
 
+//Ruta de read
+router.get('/ourproducts', async(req,res,next) => {
+    try {
+        const products = await Product.find({products})
+        res.render('product/Allproducts', {products})
+    } catch (e) {
+        console.log(e)
+    }
+})
+
 //Rutas de create
 router.get('/create', (req,res,next) => {
     res.render('product/create-products')
