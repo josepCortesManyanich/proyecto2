@@ -1,0 +1,10 @@
+<h1>Details {{title}}</h1>
+    {{#each product}}
+    {{name}}
+    {{image}}
+    {{price}}
+    {{description}}
+  <button type="submit">Edit</button>
+
+  <a href="/products/delete/{{this._id}}">Delete</a>
+  {{/each}}
