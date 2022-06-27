@@ -3,10 +3,10 @@ const app = require('../app');
 const Product = require('../models/producModel');
 
 //Ruta de read
-router.get('/ourproducts', async(req,res,next) => {
+router.get('/', async(req,res,next) => {
     try {
-        const products = await Product.find({products})
-        res.render('product/Allproducts', {products})
+        const productsfromDB = await Product.find({})
+        res.render('product/allProducts', {productsfromDB})
     } catch (e) {
         console.log(e)
     }
