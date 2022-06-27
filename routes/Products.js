@@ -37,7 +37,7 @@ router.get('/edit/:productId', async(req,res,next) => {
     const{ productId } = req.params
     try {
         const productsfromDB = await Product.findById(productId)
-        res.render('product/edit', product)
+        res.render('product/edit', productsfromDB)
     } catch (e) {
         console.log(e)
         
@@ -50,9 +50,9 @@ router.post('/edit/:productId', async(req,res,next) =>{
     const priceParsed = parseInt(price);
     const cbdParsed = parseInt(cbd);
     try {
-        const updatedProduct = { name, class: priceParsed, cbdParsed} 
+        const productsfromDB = { name, class: priceParsed, cbdParsed} 
         await Product.findByIdAndUpdate(productId, {})
-        console.log('Just updated:', updatedProduct)
+        console.log('Just updated:', productsfromDB)
         res.redirect(`/edit/${productId}`)
     } catch (e) {
         console.log(e)
