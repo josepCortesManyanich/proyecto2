@@ -6,7 +6,7 @@ const Product = require('../models/producModel');
 router.get('/', async(req,res,next) => {
     try {
         const productsfromDB = await Product.find({})
-        res.render('product/allProducts', {productsfromDB})
+        res.render('product/allproducts', {productsfromDB})
     } catch (e) {
         console.log(e)
     }
@@ -58,6 +58,17 @@ router.post('/edit/:productId', async(req,res,next) =>{
         console.log(e)
     }
 
+})
+//Rutas de detalles
+
+router.get('/details/:productId', async(req,res,next) => {
+    const { productId } = req.params;
+    try {
+        const productsfromDB = await Product.findById(productId)
+        res.render('product/details', productsfromDB)
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 // Rutas de Delete
