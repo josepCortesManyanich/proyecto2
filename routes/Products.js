@@ -18,11 +18,11 @@ router.get('/create', (req,res,next) => {
 })
 
 router.post('/create', async(req,res,next) => {
-    const {name, class: price, cbd} = req.body;
+    const {name, family, price, cbd} = req.body;
     const priceParsed = parseInt(price);
     const cbdParsed = parseInt(cbd);
     try {
-        const newProduct = {name, class: priceParsed, cbdParsed} 
+        const newProduct = {name, family, priceParsed, cbdParsed} 
         await Product.create(newProduct)
         res.redirect('product/create-products')
     } catch (e) {
@@ -46,14 +46,14 @@ router.get('/edit/:productId', async(req,res,next) => {
 
 router.post('/edit/:productId', async(req,res,next) =>{
     const{ productId } = req.params
-    const {name, class: price, cbd} = req.body;
+    const {name, family, price, cbd} = req.body;
     const priceParsed = parseInt(price);
     const cbdParsed = parseInt(cbd);
     try {
-        const productsfromDB = { name, class: priceParsed, cbdParsed} 
-        await Product.findByIdAndUpdate(productId, {})
+        const productsfromDB = { name, family, priceParsed, cbdParsed} 
+        await Product.findByIdAndUpdate(productId, {productsfromDB})
         console.log('Just updated:', productsfromDB)
-        res.redirect(`/edit/${productId}`)
+        res.render('product/edit')
     } catch (e) {
         console.log(e)
     }

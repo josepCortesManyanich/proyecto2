@@ -4,7 +4,7 @@ const productSchema = new Schema({
     name:{
         type: String,
     },
-    class:{
+    family:{
         Type: String,
     },
     price:{
