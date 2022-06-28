@@ -3,8 +3,10 @@
 {{#each productsfromDB}}
 {{this.name}}
 <br>
-{{this.image}}
+<img src={{this.image}} alt="{{this.name}}" width="200px" height="150"/>
 <br>
-{{this.price}} <p> €/g</p>
+<p>{{this.price }} €/g</p>
+<br>
 <a href="products/details/{{this._id}}"> See more</a>
+<br>
 {{/each}}
