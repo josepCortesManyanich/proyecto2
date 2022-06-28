@@ -3,9 +3,11 @@ const {Schema} = mongoose;
 const productSchema = new Schema({
     name:{
         type: String,
+        required:true
     },
     family:{
-        Type: String,
+        type: String,
+        required:true
     },
     category: {
         type: String,
@@ -13,15 +15,18 @@ const productSchema = new Schema({
     },
     price:{
         type: Number,
+        required:true
     },
     cbd:{
         type: Number,
+        required:true
     },
     image:{
         type: String,
     },
     description:{
-        type:String
+        type:String,
+        required:true
     }
 })
 
