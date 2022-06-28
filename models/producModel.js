@@ -7,6 +7,10 @@ const productSchema = new Schema({
     family:{
         Type: String,
     },
+    category: {
+        type: String,
+        enum: ['oil', 'flower'],
+    },
     price:{
         type: Number,
     },

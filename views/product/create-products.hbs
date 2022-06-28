@@ -4,10 +4,12 @@
   <form action="/products/create" method="POST">
  
     <label>Name</label>
-      <input type="text" name="name" placeholder="Oil/Flower" />
+      <input type="text" name="name" placeholder="Name of the product" />
     <br>
-    <label>Family</label>
-      <input type="text" name="family" placeholder="sativa/indica/oil" />
+    <label>Oil</label>
+      <input type="radio" name="categoryOil" placeholder="Oil" />
+    <br>
+    {{!-- Select con dos categorías --}}
     <br>   
     <label>Price</label>
       <input name="price" placeholder="€" />
@@ -15,6 +17,16 @@
     <label>Cbd</label>
       <input name="cbd" placeholder="%" />
     <br>
+    <label>Description</label>
+      <input name="description" placeholder="Describe the product" />
+    <br>
+    <label>Image</label>
+      <input name="image" placeholder="" />
+    <br>
+
+    {{#if error}}
+    <p style="color: red;">{{ error }}</p>
+    {{/if}}
     <button type="submit">Create Product</button>
  
   </form>

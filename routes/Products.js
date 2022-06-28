@@ -21,13 +21,21 @@ router.post('/create', async(req,res,next) => {
     const {name, family, price, cbd} = req.body;
     const priceParsed = parseInt(price);
     const cbdParsed = parseInt(cbd);
+    // Catch category from radio button
+
+    // Check if user ha rellenado todos los campos
+    if (!name || !family || !price || !cbd) {
+        res.render('product/create-products', { error: 'Please fill all fields to create a product' });
+        return;
+    }
+
     try {
         const newProduct = {name, family, priceParsed, cbdParsed} 
-        await Product.create(newProduct)
-        res.redirect('product/create-products')
+        const product = await Product.create(newProduct)
+        res.redirect(`/products/details/${product._id}`)
     } catch (e) {
         console.log(e)
-        res.render('product/create-products')
+        res.render('product/create-products', { error: 'Something went wrong, try again.'})
     }
 })
 
@@ -49,6 +57,7 @@ router.post('/edit/:productId', async(req,res,next) =>{
     const {name, family, price, cbd} = req.body;
     const priceParsed = parseInt(price);
     const cbdParsed = parseInt(cbd);
+    // Catch category from radio button
     try {
         const productsfromDB = { name, family, priceParsed, cbdParsed} 
         await Product.findByIdAndUpdate(productId, {productsfromDB})
@@ -57,8 +66,8 @@ router.post('/edit/:productId', async(req,res,next) =>{
     } catch (e) {
         console.log(e)
     }
-
 })
+
 //Rutas de detalles
 
 router.get('/details/:productId', async(req,res,next) => {
