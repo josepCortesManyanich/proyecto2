@@ -58,6 +58,10 @@ router.post('/edit/:productId', async(req,res,next) =>{
     const priceParsed = parseInt(price);
     const cbdParsed = parseInt(cbd);
     // Catch category from radio button
+    if (!name || !family || !price || !cbd) {
+        res.render('product/edit', { error: 'Please fill all fields to create a product' });
+        return;
+    }
     try {
         const productsfromDB = { name, family, priceParsed, cbdParsed} 
         await Product.findByIdAndUpdate(productId, {productsfromDB})
