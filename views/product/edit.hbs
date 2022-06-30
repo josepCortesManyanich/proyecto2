@@ -5,8 +5,10 @@
   <label>Name</label>
   <input type="text" name="name" value="{{ name }}"/>
 <br>
-  <label>Family</label>
-  <input type="text" name="family" value="{{ family }}"/>
+  <label for="category">Family</label>
+    <select id="family" name="family">
+      <option value="CBD Oils">CBD Oils</option>
+      <option value="CBD Flowers">CBD Flowers</option>
 <br>
   <label>Price</label>
   <input type="Number" name="price" value="{{ price }}"/>
@@ -21,6 +23,9 @@
   <input type="text" name="description" value="{{ description }}"/> 
 
 <br> 
+ {{#if error}}
+    <p style="color: red;">{{ error }}</p>
+  {{/if}}
   <button type="submit">Edit</button>
 
   <a href="/products/delete/{{this._id}}">Delete</a>
