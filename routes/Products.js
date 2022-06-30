@@ -9,6 +9,7 @@ router.get('/', async(req,res,next) => {
         res.render('product/allproducts', {productsfromDB})
     } catch (e) {
         console.log(e)
+        next(e)
     }
 })
 
@@ -27,12 +28,11 @@ router.post('/create', async(req,res,next) => {
         res.redirect(`/products/details/${product._id}`)
     } catch (e) {
         console.log(e)
-        res.render('product/create-products')
+        next(e);
     }
 })
 
 //Rutas de update
-
 router.get('/edit/:productId', async(req,res,next) => {
     const{ productId } = req.params
     try {
@@ -40,24 +40,23 @@ router.get('/edit/:productId', async(req,res,next) => {
         res.render('product/edit', productsfromDB)
     } catch (e) {
         console.log(e)
-        
+        next(e);
     }
 })
 
 router.post('/edit/:productId', async(req,res,next) =>{
     const{ productId } = req.params
-    const {name, family, price, cbd} = req.body;
+    const {name, family, price, cbd, description } = req.body;
     const priceParsed = parseInt(price);
     const cbdParsed = parseInt(cbd);
     try {
-        const productsfromDB = { name, family, priceParsed, cbdParsed} 
-        await Product.findByIdAndUpdate(productId, {})
-        console.log('Just updated:', productsfromDB)
-        res.render('product/edit')
+        // const productsfromDB = { name, family, priceParsed, cbdParsed };
+        const updatedProduct = await Product.findByIdAndUpdate(productId, { name, family, price: priceParsed, cbd: cbdParsed, description }, { new: true })
+        res.redirect(`/products/details/${productId}`);
     } catch (e) {
-        console.log(e)
+        console.log(e);
+        next(e);
     }
-
 })
 //Rutas de detalles
 
@@ -65,16 +64,16 @@ router.get('/details/:productId', async(req,res,next) => {
     const { productId } = req.params;
     try {
         const productsfromDB = await Product.findById(productId)
+        console.log(productsfromDB);
         res.render('product/details', productsfromDB)
     } catch (e) {
         console.log(e)
+        next(e);
     }
 })
 
 // Rutas de Delete
-
 router.get('/delete/:productId', async (req, res, next) => {
-
     try {
         const { productId } = req.params;
          const deletedP = await Product.findByIdAndDelete(productId);

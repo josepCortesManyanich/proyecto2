@@ -11,7 +11,7 @@ const MongoStore = require('connect-mongo');
 // Routers require
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
-const productRouter = require('./routes/Products');
+const productRouter = require('./routes/products');
 
 const app = express();
 
