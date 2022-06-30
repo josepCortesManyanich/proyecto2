@@ -24,7 +24,14 @@ router.get('/login', async (req, res, next) => {
 // @access  Public
 router.post('/signup', async (req, res, next) => {
   const { email, password, username } = req.body;
-  // ⚠️ Add validations!
+  
+  if (!username || !email || !password) {
+    res.render('auth/signup', { error: 'All fields are mandatory. Please fill them before submitting.' })
+    return;
+  }
+
+  // Validation that password meets requirements
+  
   try {
     const salt = await bcrypt.genSalt(saltRounds);
     const hashedPassword = await bcrypt.hash(password, salt);
