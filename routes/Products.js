@@ -1,8 +1,12 @@
 const router = require('express').Router();
 const app = require('../app');
 const Product = require('../models/producModel');
+const isLoggedIn = require('../middlewares');
 
-//Ruta de read
+// Read Route
+// @desc    Products list/ All the products
+// @route   GET /
+// @access  Public
 router.get('/', async(req,res,next) => {
     try {
         const productsfromDB = await Product.find({})
@@ -13,12 +17,15 @@ router.get('/', async(req,res,next) => {
     }
 })
 
-//Rutas de create
-router.get('/create', (req,res,next) => {
+// Create Route
+// @desc    Create a Product
+// @route   GET /create
+// @access  Private
+router.get('/create', isLoggedIn, (req,res,next) => {
     res.render('product/create-products')
 })
 
-router.post('/create', async(req,res,next) => {
+router.post('/create', isLoggedIn, async(req,res,next) => {
     const {name, family, price, cbd} = req.body;
     const priceParsed = parseInt(price);
     const cbdParsed = parseInt(cbd);
@@ -32,8 +39,11 @@ router.post('/create', async(req,res,next) => {
     }
 })
 
-//Rutas de update
-router.get('/edit/:productId', async(req,res,next) => {
+// Update Route
+// @desc    UPDATE products 
+// @route   GET /edit/:productId
+// @access  Private
+router.get('/edit/:productId', isLoggedIn, async(req,res,next) => {
     const{ productId } = req.params
     try {
         const productsfromDB = await Product.findById(productId)
@@ -43,8 +53,11 @@ router.get('/edit/:productId', async(req,res,next) => {
         next(e);
     }
 })
-
-router.post('/edit/:productId', async(req,res,next) =>{
+// Update Route
+// @desc    Edit products
+// @route   POST /edit/:productId
+// @access  Private
+router.post('/edit/:productId',isLoggedIn, async(req,res,next) =>{
     const{ productId } = req.params
     const {name, family, price, cbd, description } = req.body;
     const priceParsed = parseInt(price);
@@ -58,7 +71,10 @@ router.post('/edit/:productId', async(req,res,next) =>{
         next(e);
     }
 })
-//Rutas de detalles
+// Details Route
+// @desc    Product details 
+// @route   GET /details/:productId
+// @access  Public
 
 router.get('/details/:productId', async(req,res,next) => {
     const { productId } = req.params;
@@ -72,8 +88,12 @@ router.get('/details/:productId', async(req,res,next) => {
     }
 })
 
-// Rutas de Delete
-router.get('/delete/:productId', async (req, res, next) => {
+// Delete Route
+// @desc    Delete product 
+// @route   GET /delete/:productId
+// @access  Private
+
+router.get('/delete/:productId', isLoggedIn,async (req, res, next) => {
     try {
         const { productId } = req.params;
          const deletedP = await Product.findByIdAndDelete(productId);
