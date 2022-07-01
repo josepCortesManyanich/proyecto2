@@ -3,9 +3,8 @@ const app = require('../app');
 const Product = require('../models/producModel');
 const isLoggedIn = require('../middlewares');
 
-// Read Route
 // @desc    Products list/ All the products
-// @route   GET /
+// @route   GET /products
 // @access  Public
 router.get('/', async(req,res,next) => {
     try {
@@ -17,14 +16,16 @@ router.get('/', async(req,res,next) => {
     }
 })
 
-// Create Route
-// @desc    Create a Product
-// @route   GET /create
+// @desc    View the form to create a product
+// @route   GET /products/create
 // @access  Private
 router.get('/create', isLoggedIn, (req,res,next) => {
     res.render('product/create-products')
 })
 
+// @desc    Send product data to database
+// @route   POST /products/create
+// @access  Private
 router.post('/create', isLoggedIn, async(req,res,next) => {
     const {name, family, price, cbd} = req.body;
     const priceParsed = parseInt(price);
@@ -39,9 +40,8 @@ router.post('/create', isLoggedIn, async(req,res,next) => {
     }
 })
 
-// Update Route
 // @desc    UPDATE products 
-// @route   GET /edit/:productId
+// @route   GET /products/edit/:productId
 // @access  Private
 router.get('/edit/:productId', isLoggedIn, async(req,res,next) => {
     const{ productId } = req.params
@@ -53,7 +53,7 @@ router.get('/edit/:productId', isLoggedIn, async(req,res,next) => {
         next(e);
     }
 })
-// Update Route
+
 // @desc    Edit products
 // @route   POST /edit/:productId
 // @access  Private
@@ -71,11 +71,10 @@ router.post('/edit/:productId',isLoggedIn, async(req,res,next) =>{
         next(e);
     }
 })
-// Details Route
+
 // @desc    Product details 
 // @route   GET /details/:productId
 // @access  Public
-
 router.get('/details/:productId', async(req,res,next) => {
     const { productId } = req.params;
     try {
@@ -88,11 +87,9 @@ router.get('/details/:productId', async(req,res,next) => {
     }
 })
 
-// Delete Route
 // @desc    Delete product 
 // @route   GET /delete/:productId
 // @access  Private
-
 router.get('/delete/:productId', isLoggedIn,async (req, res, next) => {
     try {
         const { productId } = req.params;
