@@ -12,6 +12,9 @@ router.get('/signup', async (req, res, next) => {
   res.render('auth/signup');
 })
 
+router.get('/profile',  async (req,res, next) => {
+  res.render('auth/profile')
+})
 // @desc    Displays form view to log in
 // @route   GET /auth/login
 // @access  Public
@@ -87,3 +90,5 @@ router.post('/logout', isLoggedIn, (req, res, next) => {
 })
 
 module.exports = router;
+
+
