@@ -132,14 +132,14 @@ margin: 5px 10px;
 
 
 .navigation ul li:nth-child(1).active ~ .indicator {
-  transform: translateX(calc(37px));
+  transform: translateX(calc(-15px));
 }
 .navigation ul li:nth-child(2).active ~ .indicator {
-  transform: translateX(calc(125px * 1));
+  transform: translateX(calc(75px * 1));
 }
 .navigation ul li:nth-child(3).active ~ .indicator {
-  transform: translateX(calc(107px * 2));
+  transform: translateX(calc(80px * 2));
 }
 .navigation ul li:nth-child(4).active ~ .indicator {
-  transform: translateX(calc(102px * 3));
+  transform: translateX(calc(85px * 3));
 }
