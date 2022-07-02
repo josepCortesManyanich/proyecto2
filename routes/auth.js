@@ -49,7 +49,7 @@ router.post('/signup', async (req, res, next) => {
 // @desc    Sends user auth data to database to authenticate user
 // @route   POST /auth/login
 // @access  Public
-router.post('/login',isLoggedIn, async (req, res, next) => {
+router.post('/login', async (req, res, next) => {
   const { username, email, password } = req.body;
   // ⚠️ Add more validations!
   if (!email || !password) {
