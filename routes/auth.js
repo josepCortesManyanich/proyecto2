@@ -52,7 +52,7 @@ router.post('/signup', async (req, res, next) => {
 router.post('/login',isLoggedIn, async (req, res, next) => {
   const { username, email, password } = req.body;
   // ⚠️ Add more validations!
-  if (!username || !email || !password) {
+  if (!email || !password) {
     res.render('auth/login', { error: 'All fields are mandatory. Please fill them before submitting.' })
     return;
   }
