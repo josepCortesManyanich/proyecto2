@@ -69,6 +69,7 @@ router.post('/edit/:productId',isLoggedIn, async(req,res,next) =>{
     if (!name || !family || !price || !cbd) {
         res.render('product/edit', { error: 'Please fill all fields to create a product' });
         return;
+    }
     try {
         // const productsfromDB = { name, family, priceParsed, cbdParsed };
         const updatedProduct = await Product.findByIdAndUpdate(productId, { name, family, price: priceParsed, cbd: cbdParsed, description }, { new: true })
@@ -77,7 +78,7 @@ router.post('/edit/:productId',isLoggedIn, async(req,res,next) =>{
         console.log(e);
         next(e);
     }
-})
+});
 
 // @desc    Product details 
 // @route   GET /details/:productId
