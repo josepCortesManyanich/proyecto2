@@ -34,6 +34,7 @@ router.post('/signup', async (req, res, next) => {
   }
 
   // Validation that password meets requirements
+  // Add second password check
   
   try {
     const salt = await bcrypt.genSalt(saltRounds);
