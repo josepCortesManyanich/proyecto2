@@ -48,8 +48,12 @@ margin: 5px 10px;
   justify-content: center;
   align-items:center;
   min-height:50px;
+  position: fixed;
+  bottom: 5px;
 
 }
+
+
 
 .navigation {
   width:100vw;
@@ -60,6 +64,7 @@ margin: 5px 10px;
   justify-content:center;
   align-items: center;
   border-radius: 10px;
+  bottom:0;
 
 }
 
@@ -91,15 +96,15 @@ margin: 5px 10px;
 .navigation ul li a .icon {
   position: relative;
   display: block;
-  line-height:75px;
-  font-size: 1.5em;
+  line-height:50px;
+  font-size: 2.5em;
   text-align: center;
   transition: 0.5s;
   color:White;
 
 }
 .navigation ul li.active a .icon{
-  transform: translateY(-35px);
+  transform: translateY(10px);
 }
 
 .navigation ul li a .text{
@@ -110,36 +115,10 @@ margin: 5px 10px;
   letter-spacing: 0.05em;
   transition: 0.5s;
   opacity: 0;
-  transform: translateY(5px);
+  transform: translateY(15px);
 }
 
 .navigation ul li.active a .text{
   opacity: 1;
   transform: translateY(20px);
-}
-
-.indicator {
-  position:absolute;
-  top:-59%;
-  left:38px;
-  width:70px;
-  height:70px;
-  background: #000000;
-  border-radius: 50%;
-  border: 5px solid var(--clr);
-  transition: 0.5s;
-}
-
-
-.navigation ul li:nth-child(1).active ~ .indicator {
-  transform: translateX(calc(-15px));
-}
-.navigation ul li:nth-child(2).active ~ .indicator {
-  transform: translateX(calc(75px * 1));
-}
-.navigation ul li:nth-child(3).active ~ .indicator {
-  transform: translateX(calc(80px * 2));
-}
-.navigation ul li:nth-child(4).active ~ .indicator {
-  transform: translateX(calc(85px * 3));
 }

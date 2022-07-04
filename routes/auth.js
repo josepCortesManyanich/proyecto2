@@ -27,10 +27,13 @@ router.get('/login', async (req, res, next) => {
 // @access  Public
 router.post('/signup', async (req, res, next) => {
   const { email, password, username } = req.body;
-  
   if (!username || !email || !password) {
     res.render('auth/signup', { error: 'All fields are mandatory. Please fill them before submitting.' })
     return;
+  }
+  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  if(!regex.test(password)){
+    res.render('auth/signup', { error: 'Your password must be at least 6 characters long, contain at least one number and have a mixture of uppercase and lowercase letters.' })
   }
 
   // Validation that password meets requirements
@@ -49,9 +52,9 @@ router.post('/signup', async (req, res, next) => {
 // @route   POST /auth/login
 // @access  Public
 router.post('/login', async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
   // ⚠️ Add more validations!
-  if (!username || !email || !password) {
+  if (!email || !password) {
     res.render('auth/login', { error: 'All fields are mandatory. Please fill them before submitting.' })
     return;
   }
@@ -60,12 +63,12 @@ router.post('/login', async (req, res, next) => {
     // Remember to assign user to session cookie:
     const user = await User.findOne({ email: email });
     if (!user) {
-      res.render('auth/login', { error: "User not found" });
+      res.render('auth/login', { error: "User not found, Please Try Again or Sign up" });
       return;
     } else {
       const match = await bcrypt.compare(password, user.hashedPassword);
       if (match) {
-        req.session.currentUser = user;
+       req.session.currentUser = user
         res.redirect('/');
       } else {
         res.render('auth/login', { error: "Unable to authenticate user" });

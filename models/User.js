@@ -3,6 +3,10 @@ const { Schema, model } = require('mongoose');
 const userSchema = new Schema(
   // Add whichever fields you need for your app
   {
+    role: {
+      type:String,
+      default:'user'
+    },
     username: {
       type: String,
       trim: true,

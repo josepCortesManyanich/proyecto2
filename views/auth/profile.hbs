@@ -1,1 +1,8 @@
-<h1>Welcome {{ username }}</h1>
+ <h1>Welcome to Chill&Pill {{#if user}}{{user.username}}{{/if}}</h1>
+ 
+    {{#each user}}
+    <h1>Welcome {{username}}</h1>
+    <p>User Name:{{ username }}</p> <br>
+    <p>Email:{{ email }}</p> <br>
+    {{/each}}
+    <form action="/auth/logout" method="post" ><button type="submit" >Log Out</button></form>

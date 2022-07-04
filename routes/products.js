@@ -2,6 +2,7 @@ const router = require('express').Router();
 const app = require('../app');
 const Product = require('../models/producModel');
 const isLoggedIn = require('../middlewares');
+const isAdmin = require('../middlewares');
 
 // @desc    Products list/ All the products
 // @route   GET /products
@@ -19,14 +20,14 @@ router.get('/', async(req,res,next) => {
 // @desc    View the form to create a product
 // @route   GET /products/create
 // @access  Private
-router.get('/create', isLoggedIn, (req,res,next) => {
+router.get('/create', isAdmin, (req,res,next) => {
     res.render('product/create-products')
 })
 
 // @desc    Send product data to database
 // @route   POST /products/create
 // @access  Private
-router.post('/create', isLoggedIn, async(req,res,next) => {
+router.post('/create', isAdmin, async(req,res,next) => {
     const {name, family, price, cbd} = req.body;
     const priceParsed = parseInt(price);
     const cbdParsed = parseInt(cbd);
@@ -47,7 +48,7 @@ router.post('/create', isLoggedIn, async(req,res,next) => {
 // @desc    UPDATE products 
 // @route   GET /products/edit/:productId
 // @access  Private
-router.get('/edit/:productId', isLoggedIn, async(req,res,next) => {
+router.get('/edit/:productId', isAdmin, async(req,res,next) => {
     const{ productId } = req.params
     try {
         const productsfromDB = await Product.findById(productId)
@@ -59,9 +60,9 @@ router.get('/edit/:productId', isLoggedIn, async(req,res,next) => {
 })
 
 // @desc    Edit products
-// @route   POST /edit/:productId
+// @route   POST Products/edit/:productId
 // @access  Private
-router.post('/edit/:productId',isLoggedIn, async(req,res,next) =>{
+router.post('/edit/:productId',isAdmin, async(req,res,next) =>{
     const{ productId } = req.params
     const {name, family, price, cbd, description } = req.body;
     const priceParsed = parseInt(price);
@@ -81,7 +82,7 @@ router.post('/edit/:productId',isLoggedIn, async(req,res,next) =>{
 });
 
 // @desc    Product details 
-// @route   GET /details/:productId
+// @route   GET Products/details/:productId
 // @access  Public
 router.get('/details/:productId', async(req,res,next) => {
     const { productId } = req.params;
@@ -96,9 +97,9 @@ router.get('/details/:productId', async(req,res,next) => {
 })
 
 // @desc    Delete product 
-// @route   GET /delete/:productId
+// @route   GET product/delete/:productId
 // @access  Private
-router.get('/delete/:productId', isLoggedIn,async (req, res, next) => {
+router.get('/delete/:productId', isAdmin, async (req, res, next) => {
     try {
         const { productId } = req.params;
          const deletedP = await Product.findByIdAndDelete(productId);
