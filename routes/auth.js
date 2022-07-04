@@ -37,12 +37,13 @@ router.post('/signup', async (req, res, next) => {
   }
 
   // Validation that password meets requirements
+  // Add second password check
   
   try {
     const salt = await bcrypt.genSalt(saltRounds);
     const hashedPassword = await bcrypt.hash(password, salt);
     const user = await User.create({ username, email, hashedPassword });
-    res.render('auth/profile', user)
+    res.render('auth/login', user)
   } catch (error) {
     next(error)
   }
@@ -51,8 +52,13 @@ router.post('/signup', async (req, res, next) => {
 // @desc    Sends user auth data to database to authenticate user
 // @route   POST /auth/login
 // @access  Public
+<<<<<<< HEAD
 router.post('/login', async (req, res, next) => {
   const { email, password } = req.body;
+=======
+router.post('/login',isLoggedIn, async (req, res, next) => {
+  const { username, email, password } = req.body;
+>>>>>>> 24420db1ba9043131d30dd58ea697e8f2f72e81f
   // ⚠️ Add more validations!
   if (!email || !password) {
     res.render('auth/login', { error: 'All fields are mandatory. Please fill them before submitting.' })
@@ -68,8 +74,13 @@ router.post('/login', async (req, res, next) => {
     } else {
       const match = await bcrypt.compare(password, user.hashedPassword);
       if (match) {
+<<<<<<< HEAD
        req.session.currentUser = user
         res.redirect('/');
+=======
+        req.session.currentUser = user;
+        res.redirect('/auth/profile');
+>>>>>>> 24420db1ba9043131d30dd58ea697e8f2f72e81f
       } else {
         res.render('auth/login', { error: "Unable to authenticate user" });
       }
