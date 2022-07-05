@@ -52,4 +52,34 @@ router.post('/:productId', async(req,res,next) => {
         next(e)
     }
 })
+
+router.post('/delete/:productId', async(req,res,next) => {
+    const { productId } = req.params
+    const user = req.session.currentUser;
+    try {
+        const product = await Product.findByIdAndDelete(productId);
+        console.log(product)
+        const prevCart = await Cart.findOne({ user: user._id });
+        console.log(prevCart)
+        if (prevCart) {
+            const previousPrice = prevCart.quantity;
+            const newPrice = parseInt(previousPrice - product.price);
+            const newCart = await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
+            newCart.products.push(product._id);
+            newCart.save();
+            res.redirect('/products')
+        } else {
+            res.redirect('/products')
+            
+        }
+    } 
+        
+     catch (e) {
+        console.log(e)
+        next(e)
+    }
+})
+
+
+
 module.exports= router;
