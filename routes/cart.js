@@ -57,7 +57,7 @@ router.post('/delete/:productId', async(req,res,next) => {
     const { productId } = req.params
     const user = req.session.currentUser;
     try {
-        const product = await Product.findByIdAndDelete(productId);
+        const product = await Cart.findByIdAndDelete(productId);
         console.log(product)
         const prevCart = await Cart.findOne({ user: user._id });
         console.log(prevCart)
@@ -65,7 +65,7 @@ router.post('/delete/:productId', async(req,res,next) => {
             const previousPrice = prevCart.quantity;
             const newPrice = parseInt(previousPrice - product.price);
             const newCart = await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
-            newCart.products.push(product._id);
+            
             newCart.save();
             res.redirect('/products')
         } else {
