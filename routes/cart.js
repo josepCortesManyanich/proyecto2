@@ -46,8 +46,8 @@ router.post('/:productId', async(req,res,next) => {
             res.redirect('/products')
         }
          } 
-        }
-    } catch (e) {
+        
+     catch (e) {
         console.log(e)
         next(e)
     }
