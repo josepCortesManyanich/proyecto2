@@ -86,10 +86,11 @@ router.post('/edit/:productId',isAdmin, async(req,res,next) =>{
 // @access  Public
 router.get('/details/:productId', async(req,res,next) => {
     const { productId } = req.params;
+    const userIsAdmin = req.session.currentUser.role === 'admin' ? true : false;
     try {
         const productsfromDB = await Product.findById(productId)
         console.log(productsfromDB);
-        res.render('product/details', productsfromDB)
+        res.render('product/details', { productsfromDB, userIsAdmin });
     } catch (e) {
         console.log(e)
         next(e);

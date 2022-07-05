@@ -1,20 +1,21 @@
-<h1>Details {{this.name}}</h1>
+<h1>Details {{productsfromDB.name}}</h1>
     <div>
-    <p> {{this.name}}</p>
+    <p> {{productsfromDBis.name}}</p>
     <br>
-    <img src={{image}} alt="{{this.name}}" width="200px" height="150"/>
+    <img src={{productsfromDB.image}} alt="{{productsfromDB.name}}" width="200px" height="150"/>
     <br>
-    <p>{{this.price}}€/g</p>
+    <p>{{productsfromDB.price}}€/g</p>
     <br>
-    <p>{{this.cbd}}%</p>
+    <p>{{productsfromDB.cbd}}%</p>
     <br>
-    <p>{{this.description}}</p>
+    <p>{{productsfromDB.description}}</p>
     <br>
   
-  <a href="/products/edit/{{this._id}}">Edit</a>
-
-  <a href="/products/delete/{{this._id}}">Delete</a>
-  <form  method="POST"  action="/cart">
+  {{#if userIsAdmin}}
+  <a href="/products/edit/{{productsfromDB._id}}">Edit</a>
+  <a href="/products/delete/{{productsfromDB._id}}">Delete</a>
+  {{/if}}
+  <form  method="POST"  action="/cart/{{productsfromDB._id}}">
   <button type="submit"> ADD TO CART!</button>
   </form>
   </div>

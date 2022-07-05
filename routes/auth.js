@@ -12,8 +12,9 @@ router.get('/signup', async (req, res, next) => {
   res.render('auth/signup');
 })
 
-router.get('/profile',  async (req,res, next) => {
-  res.render('auth/profile')
+router.get('/profile', async (req, res, next) => {
+  const user = req.session.currentUser;
+  res.render('auth/profile', { user })
 })
 // @desc    Displays form view to log in
 // @route   GET /auth/login

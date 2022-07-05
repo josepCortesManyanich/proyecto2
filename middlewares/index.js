@@ -8,8 +8,10 @@ module.exports = isLoggedIn = (req, res, next) => {
 };
 
 module.exports = isAdmin = (req, res, next) => {
-  if (req.session.currentUser.role !== 'admin ') {
-    return res.render('/auth/login', {error:'Permissions Denied. Only Admins have access'});
+  console.log(req.session.currentUser)
+  if (req.session.currentUser.role !== 'admin') {
+    // req.toast.error('Only admins can perform this action')
+    return res.render('auth/login', {error:'Permissions Denied. Only Admins have access'});
   }
   next();
 }

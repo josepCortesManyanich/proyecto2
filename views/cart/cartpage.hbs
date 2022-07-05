@@ -7,7 +7,7 @@
 
 <div class="Checkout-products">
 
-    {{#each ProductInCart}}
+    {{#each cart.products}}
     {{name}}
     {{image}}
     {{price}}
@@ -15,6 +15,7 @@
 </div>
 
 <div class="checkout-bottom">
-{{home}}
-{{}}
+{{#if message}}
+<p>{{message}}</p>
+{{/if}}
 </div>
