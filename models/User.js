@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, SchemaTypes } = require('mongoose');
  
 const userSchema = new Schema(
   // Add whichever fields you need for your app
@@ -23,6 +23,10 @@ const userSchema = new Schema(
     hashedPassword: {
       type: String,
       required: [true, 'Password is required.']
+    },
+    cart:{
+      type: Schema.Types.ObjectId,
+      ref: 'Cart'
     }
   },
   {
