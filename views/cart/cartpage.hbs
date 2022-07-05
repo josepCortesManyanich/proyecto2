@@ -12,6 +12,10 @@
     {{image}}
     {{price}}
     {{/each}}
+
+<form  method="POST"  action="/cart/delete/{{productsfromDB._id}}">
+  <button type="submit"> Delete</button>
+  </form>
 </div>
 
 <div class="checkout-bottom">
