@@ -10,10 +10,9 @@ const cartModel= new Schema({
         required:true
     },
     productsNumber:{
-        type: [String];
+        type: [String],
         required:true
     }
-   
     })
 
 const Cart = mongoose.model('Cart', cartModel);

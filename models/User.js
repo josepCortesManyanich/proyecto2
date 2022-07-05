@@ -21,7 +21,7 @@ const userSchema = new Schema(
       required: [true, 'Password is required.']
     },
     cart:{
-      type: Schema.Types.ObjectId
+      type: Schema.Types.ObjectId,
       ref: 'Cart'
     }
   },
