@@ -2,25 +2,31 @@ const router = require('express').Router();
 const app = require('../app');
 const Cart = require('../models/cartmodel');
 const isLoggedIn = require('../middlewares');
-
+const User = require('../models/User');
+const Product = require('../models/producModel');
 router.get('/', async (req, res, next) => {
     const user = req.session.currentUser;
     try {
-        const userProducts = await Cart.find({});
-        res.render('cart/cartpage', userProducts)
+        const cart = await Cart.findOne({ user: user._id }).populate('products');
+        if (cart) {
+            res.render('cart/cartpage', { cart })
+            return;
+        } else {
+            res.render('cart/cartpage', { message: 'Still no products in your cart. Add some on the store! ' })
+            return;
+        }
     } catch (e) {
         console.log(e)
         next(e)
        
     }
 })
-
-router.post('/:userId', async(req,res,next) => {
-     const {totalSells, quantity, productsNumber} = req.body;
-     const {userId} = req.params
-     const parsedSells = parseInt(totalSells);
-     const parsedQuantity = parseInt(quantity);
-
+router.post('/:productId', async(req,res,next) => {
+    // const {totalSells, quantity, productsNumber} = req.body;
+     const { productId } = req.params
+    //  const parsedSells = parseInt(totalSells);
+    //  const parsedQuantity = parseInt(quantity);
+    const user = req.session.currentUser;
     try {
         const product = await Product.findById(productId);
         console.log(product)
@@ -38,14 +44,12 @@ router.post('/:userId', async(req,res,next) => {
             newCart.products.push(productId);
             newCart.save();
             res.redirect('/products')
+        }
          } 
+        }
     } catch (e) {
         console.log(e)
         next(e)
     }
 })
-router.post('/:userId', async(req,res,next) =>{
-
-})
-
 module.exports= router;
