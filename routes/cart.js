@@ -57,22 +57,29 @@ router.post('/delete/:productId', async(req,res,next) => {
     const { productId } = req.params
     const user = req.session.currentUser;
     try {
-        const product = await Cart.findByIdAndDelete(productId);
-        console.log(product)
+       const product = await Product.findById(productId)
         const prevCart = await Cart.findOne({ user: user._id });
         console.log(prevCart)
-        if (prevCart) {
-            const previousPrice = prevCart.quantity;
-            const newPrice = parseInt(previousPrice - product.price);
-            const newCart = await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
+        //eliminar el product id de la array, prevCart.products, prevcart.save()
+        //prevCart.forEach((elem) =>{
+           // if(prevCart.products === productId){
+           //     prevCart.indexOf(productId)
+            //    console.log(prevCart.indexOf(productId))
+           // }
+
+          // })
+        //for(let i = 0; i < prevCart.length; i++)
+        //if (prevCart[i] === productId){
+         //   return prevCart.indexOf(productId).splice()
+       // }               
+        const previousPrice = prevCart.quantity;
+        const newPrice = parseInt(previousPrice - product.price);
+        const newCart = await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
             
-            newCart.save();
-            res.redirect('/products')
-        } else {
-            res.redirect('/products')
-            
+        newCart.save();
+        res.redirect('/products')
+        
         }
-    } 
         
      catch (e) {
         console.log(e)
