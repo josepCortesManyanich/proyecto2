@@ -92,8 +92,7 @@ router.post('/delete/:productId', async(req,res,next) => {
           // })
         for(let i = 0; i < prevCart.length; i++)
         if (prevCart[i] === product){
-            prevCart.indexOf(product).splice()
-            prevCart.save()
+            await Cart.findOneAndDelete({product: product._id})
         }               
         const previousPrice = prevCart.quantity;
         const newPrice = parseInt(previousPrice - product.price);
