@@ -14,7 +14,7 @@
     <br>
     {{price}}
     <br>
-    <form  method="POST"  action="/cart/{{productsfromDB._id}}">
+    <form  method="POST"  action="/cart/addmore/{{productsfromDB._id}}">
      <button type="submit"> ADD MORE</button>
     </form>
     <form  method="POST"  action="/cart/delete/{{productsfromDB._id}}">
@@ -27,6 +27,8 @@
 <br>
 
 <p>  Total = {{cart.quantity}} €</p>
+
+
 
 
 <div class="checkout-bottom">
