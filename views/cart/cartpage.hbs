@@ -14,10 +14,10 @@
     <br>
     {{price}}
     <br>
-    <form  method="POST"  action="/cart/addmore/{{productsfromDB._id}}">
+    <form  method="POST"  action="/cart/addmore/{{this._id}}">
      <button type="submit"> ADD MORE</button>
     </form>
-    <form  method="POST"  action="/cart/delete/{{productsfromDB._id}}">
+    <form  method="POST"  action="/cart/delete/{{this._id}}">
     <button type="submit">DELETE</button>
     </form>
     
