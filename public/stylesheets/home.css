@@ -18,7 +18,7 @@ body {
   display: block;
   filter:blur(10px);
   -webkit-filter: blur(10px);
-  transition:all 1000ms;
+  transition:all 5000ms;
 }
 
 .showcase:hover::after{
@@ -61,6 +61,9 @@ width: 380px;
 .content .text {
   line-height: 1.7;
   margin-top: 1rem;
+  font-size: 1.5rem;
+  width: 100%;
+  color: rgb(68, 85, 192);
 }
 
 
@@ -77,6 +80,28 @@ width: 380px;
   grid-template-columns: repeat(3,1fr);
 }
 
+.products button {
+  
+  border: none;
+  color: rgb(101, 178, 14);
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.5rem;
+  margin-left: 50%;
+  margin-bottom: 3%;
+  
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+}
+
+.products button:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
 .grid-2 {
   display: grid;
   grid-gap: 20px;
@@ -88,7 +113,7 @@ width: 380px;
 }
 
 footer {
-  padding:2.3rem;
+  padding:1.5rem;
 }
 .b-light{
   background: #f4f4f4;
@@ -98,6 +123,8 @@ footer {
   background: rgb(162, 172, 110);
   color:#f4f4f4;
 }
+
+
 
 /* Mobile */
 @media(max-width:560px){
@@ -137,7 +164,7 @@ footer {
   grid-template-columns: 1fr;
   
 }
-.services div {
+.products div {
   border-bottom: #333 dashed 1px;
   padding: 1.2rem 1rem;
 }
