@@ -52,29 +52,56 @@ router.post('/:productId', async(req,res,next) => {
         next(e)
     }
 })
+//@route For add more products in the cart
+router.post('/addmore/:productId', async(req,res,next) => {
+    
+     const { productId } = req.params
+    
+    try {
+        const product = await Product.findById(productId);
+        console.log(product)
+        const previousPrice = prevCart.quantity;
+        const newPrice = parseInt(previousPrice + product.price);
+        await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
+        newCart.products.push(product._id);
+        newCart.save();
+        res.redirect('/products')
+        
+    }
+     catch (e) {
+        console.log(e)
+        next(e)
+    }
+})
+
 
 router.post('/delete/:productId', async(req,res,next) => {
     const { productId } = req.params
     const user = req.session.currentUser;
     try {
-        const product = await Product.findByIdAndDelete(productId);
-        console.log(product)
-        const prevCart = await Cart.findOne({ user: user._id });
-        console.log(prevCart)
-        if (prevCart) {
-            const previousPrice = prevCart.quantity;
-            const newPrice = parseInt(previousPrice - product.price);
-            const newCart = await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
-            newCart.products.push(product._id);
-            newCart.save();
-            res.redirect('/products')
-        } else {
-            res.redirect('/products')
+       const product = await Product.findById(productId)
+    const prevCart = await Cart.findOne({ user: user._id });
+    console.log(prevCart)
+    //eliminar el product id de la array, prevCart.products, prevcart.save()
+    
+      
+    for(let i = 0; i < prevCart.products.length; i++){
+        if (prevCart.products[i] === product){
+            console.log(product)
+            return Cart.products.findOneAndDelete({product: product._id})
             
-        }
-    } 
+        }    
+
+    }
+                
+    const previousPrice = prevCart.quantity;
+    const newPrice = parseInt(previousPrice - product.price);
+    const newCart = await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
         
-     catch (e) {
+    newCart.save();
+    res.redirect('/products')
+    
+    }catch (e) {
         console.log(e)
         next(e)
     }

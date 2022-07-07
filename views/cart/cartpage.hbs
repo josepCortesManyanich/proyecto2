@@ -1,7 +1,7 @@
 <div class="Checkout-top">
 
 <h3>Your Products</h3>
-<a href="../auth/profile"><img src="" alt="profile-logo"></a>
+<a href="../auth/profile">{{user.name}}</a>
 
 </div>
 
@@ -9,10 +9,28 @@
 
     {{#each cart.products}}
     {{name}}
-    {{image}}
+    <br>
+    <img src={{this.image}} alt="{{this.name}}" width="200px" height="150"/>
+    <br>
     {{price}}
+    <br>
+    <form  method="POST"  action="/cart/addmore/{{this._id}}">
+     <button type="submit"> ADD MORE</button>
+    </form>
+    <form  method="POST"  action="/cart/delete/{{this._id}}">
+    <button type="submit">DELETE</button>
+    </form>
+    
+
     {{/each}}
 </div>
+<br>
+
+<p>  Total = {{cart.quantity}} €</p>
+<button> <a href="/payment">Continue for pay</a></button>
+
+
+
 
 <div class="checkout-bottom">
 {{#if message}}

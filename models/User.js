@@ -23,11 +23,16 @@ const userSchema = new Schema(
     hashedPassword: {
       type: String,
       required: [true, 'Password is required.']
-    }
+    },
     // cart:{
     //   type: Schema.Types.ObjectId,
     //   ref: 'Cart'
     // }
+    payment:{
+      type: [Schema.Types.ObjectId],
+      ref: 'Payment'
+    }
+
   },
   {
     timestamps: true
