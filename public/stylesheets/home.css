@@ -26,7 +26,10 @@ body {
   -webkit-filter: blur(0px);
 }
 
-
+.showcase:hover .content {
+  filter:blur(2px);
+  -webkit-filter: blur(2px);
+}
 
 .content {
 position:absolute;
@@ -67,3 +70,15 @@ width: 380px;
   overflow:hidden;
   padding: 4rem 1rem;
 } 
+
+.grid-3 {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3,1fr);
+}
+
+.center {
+  text-align: center;
+  margin:auto;
+}
+
