@@ -20,9 +20,13 @@
     <form  method="POST"  action="/cart/delete/{{productsfromDB._id}}">
     <button type="submit">DELETE</button>
     </form>
+    
 
     {{/each}}
 </div>
+<br>
+
+<p>  Total = {{cart.quantity}} €</p>
 
 
 <div class="checkout-bottom">
