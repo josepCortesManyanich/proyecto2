@@ -52,6 +52,29 @@ router.post('/:productId', async(req,res,next) => {
         next(e)
     }
 })
+//@route For add more products in the cart
+router.post('/:productId', async(req,res,next) => {
+    
+     const { productId } = req.params
+    
+    try {
+        const product = await Product.findById(productId);
+        console.log(product)
+        const prevCart = await Cart.findOne({ user: user._id });
+        const previousPrice = prevCart.quantity;
+        const newPrice = parseInt(previousPrice + product.price);
+        const newCart = await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
+        newCart.products.push(product._id);
+        newCart.save();
+        res.redirect('/products')
+        
+    }
+     catch (e) {
+        console.log(e)
+        next(e)
+    }
+})
+
 
 router.post('/delete/:productId', async(req,res,next) => {
     const { productId } = req.params
@@ -68,10 +91,11 @@ router.post('/delete/:productId', async(req,res,next) => {
            // }
 
           // })
-        //for(let i = 0; i < prevCart.length; i++)
-        //if (prevCart[i] === productId){
-         //   return prevCart.indexOf(productId).splice()
-       // }               
+        for(let i = 0; i < prevCart.length; i++)
+        if (prevCart[i] === product){
+            prevCart.indexOf(product).splice()
+            prevCart.save()
+        }               
         const previousPrice = prevCart.quantity;
         const newPrice = parseInt(previousPrice - product.price);
         const newCart = await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
