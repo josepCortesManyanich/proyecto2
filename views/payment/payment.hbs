@@ -1,0 +1,29 @@
+<h1> Complete the next states</h1>
+
+<div>
+  <form action="/products/create" method="POST">
+ 
+    <label>Adress</label>
+      <input type="text" name="adress" placeholder="C/Pamplona 94 " />
+    <br>
+          
+    <label>Phone Number</label>
+      <input type="number"  name="phoneNumber" placeholder="652869324" />
+    <br>
+    
+    <label for="method">Payment method</label>
+    <select id="method" name="method">
+      <option value="Credit Card">Credit Card</option>
+      <option value="In cash">In cash</option>
+    <br>
+    </select>
+    
+    
+    <button type="submit">Pay Now</button>
+    
+    {{#if error}}
+    <p style="color: red;">{{ error }}</p>
+    {{/if}}
+    
+    
+</div>
