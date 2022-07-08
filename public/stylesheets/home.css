@@ -80,7 +80,7 @@ width: 380px;
   grid-template-columns: repeat(3,1fr);
 }
 
-.products button {
+#home {
   
   border: none;
   color: rgb(101, 178, 14);
@@ -91,13 +91,12 @@ width: 380px;
   font-size: 1.5rem;
   margin-left: 50%;
   margin-bottom: 3%;
-  
   transition-duration: 0.4s;
   cursor: pointer;
 
 }
 
-.products button:hover {
+ #home:hover {
   background-color: #4CAF50;
   color: white;
 }
@@ -114,6 +113,7 @@ width: 380px;
 
 footer {
   padding:1.5rem;
+  margin-bottom: 2rem;
 }
 .b-light{
   background: #f4f4f4;
@@ -168,5 +168,28 @@ footer {
   border-bottom: #333 dashed 1px;
   padding: 1.2rem 1rem;
 }
+
+#home {
+ margin-left: 95px;
+ border: none;
+}
+
+}
+
+@media (max-height:500px){
+  .content .title,
+  .content .text {
+    display: none;
+  }
+
+  .content {
+    top:-50px;
+    left:350px;
+  }
+  .content .logo {
+    height: 280px;
+    width: 280px;
+    
+    }
 
 }
