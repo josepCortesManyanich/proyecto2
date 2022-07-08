@@ -34,7 +34,7 @@ router.post('/:productId', async(req,res,next) => {
         console.log(prevCart)
         if (prevCart) {
             const previousPrice = prevCart.quantity;
-            const newPrice = parseInt(previousPrice + product.price);
+            const newPrice = parseFloat(previousPrice + product.price).toFixed(2);
             const newCart = await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
             newCart.products.push(product._id);
             newCart.save();
@@ -56,13 +56,17 @@ router.post('/:productId', async(req,res,next) => {
 router.post('/addmore/:productId', async(req,res,next) => {
     
      const { productId } = req.params
-    
+     const user = req.session.currentUser
     try {
         const product = await Product.findById(productId);
         console.log(product)
+        const prevCart = await Cart.findOne({ user: user._id });
         const previousPrice = prevCart.quantity;
-        const newPrice = parseInt(previousPrice + product.price);
-        await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
+        const previousTotal = prevCart.totalProduct
+        const newTotal = parseInt(previousTotal + 1)
+        const newPrice = parseFloat(previousPrice + product.price).toFixed(2);
+        await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, {totalProduct: newTotal}, { new: true });
+        const newCart = await Cart.create({ user: user._id, quantity: product.price })
         newCart.products.push(product._id);
         newCart.save();
         res.redirect('/products')
@@ -95,7 +99,7 @@ router.post('/delete/:productId', async(req,res,next) => {
     }
                 
     const previousPrice = prevCart.quantity;
-    const newPrice = parseInt(previousPrice - product.price);
+    const newPrice = parseFloat(previousPrice - product.price).toFixed(2);
     const newCart = await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
         
     newCart.save();
