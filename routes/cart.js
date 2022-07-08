@@ -62,8 +62,10 @@ router.post('/addmore/:productId', async(req,res,next) => {
         console.log(product)
         const prevCart = await Cart.findOne({ user: user._id });
         const previousPrice = prevCart.quantity;
+        const previousTotal = prevCart.totalProduct
+        const newTotal = parseInt(previousTotal + 1)
         const newPrice = parseFloat(previousPrice + product.price).toFixed(2);
-        await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
+        await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, {totalProduct: newTotal}, { new: true });
         const newCart = await Cart.create({ user: user._id, quantity: product.price })
         newCart.products.push(product._id);
         newCart.save();
