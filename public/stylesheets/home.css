@@ -1,5 +1,5 @@
 body {
-  background: rgba(161, 163, 23, 0.972);
+  background: rgba(141, 175, 4, 0.972);
   margin:0;
   color:rgb(255, 255, 255);
   font-family: 'Segoe UI', Tahoma, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -113,7 +113,6 @@ width: 380px;
 
 footer {
   padding:1.5rem;
-  margin-bottom: 2rem;
 }
 .b-light{
   background: #f4f4f4;

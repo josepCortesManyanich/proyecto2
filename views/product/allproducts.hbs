@@ -1,12 +1,15 @@
-<h1>OUR PRODUCTS</h1>
-<div>
+
 {{#each productsfromDB}}
-{{this.name}}
-<br>
-<img src={{this.image}} alt="{{this.name}}" width="200px" height="150"/>
-<br>
-<p>{{this.price }} €/g</p>
-<br>
-<a href="products/details/{{this._id}}"> See more</a>
-<br>
+<div class="card">
+   <img class="card__image" src="{{this.image}}" />
+   <main class="card__content">
+      <small class="card__tag">Technology</small>
+      <h1 class="card__head">{{this.title}}
+      </h1>
+      <span class="card__date">Sep. 10, 2020</span>
+      <p class="card__text">{{this.description}}.</p>
+      <button> <a href="">products/details/{{this._id}}</a> Details</button>
+   </main>
+</div>
 {{/each}}
+
