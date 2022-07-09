@@ -64,10 +64,9 @@ router.post('/addmore/:productId', async(req,res,next) => {
         const newTotal = parseInt(previousTotal + 1)
         const newPrice = parseFloat(previousPrice + product.price).toFixed(2);
         await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, {totalProduct: newTotal}, { new: true });
-        const newCart = await Cart.create({ user: user._id, quantity: product.price })
-        newCart.products.push(product._id);
-        newCart.save();
-        res.redirect('/products')
+        prevCart.products.push(product._id);
+        prevCart.save();
+        res.redirect('/cart')
         
     }
      catch (e) {
@@ -90,7 +89,7 @@ router.post('/delete/:productId', async(req,res,next) => {
     for(let i = 0; i < prevCart.products.length; i++){
         if (prevCart.products[i] === product){
             console.log(product)
-            return Cart.products.findOneAndDelete({product: product._id})
+            return Cart.products.findOneAndDelete({product: product._id},{ product: product.image},{product: product.name},{product: product.price})
             
         }    
 
@@ -101,7 +100,7 @@ router.post('/delete/:productId', async(req,res,next) => {
     const newCart = await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
         
     newCart.save();
-    res.redirect('/products')
+    res.redirect('/cart')
     
     }catch (e) {
         console.log(e)
