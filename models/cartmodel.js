@@ -9,10 +9,6 @@ const cartModel= new Schema({
         type: Number,
         required: true
     },
-    totalProduct:{
-      type: Number,
-      required: true,
-    },
     products: {
       type: [Schema.Types.ObjectId],
       ref: 'Product'

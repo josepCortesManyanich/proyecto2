@@ -38,16 +38,14 @@ router.post('/:productId', async(req,res,next) => {
             const newCart = await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
             newCart.products.push(product._id);
             newCart.save();
-            res.redirect('/products')
+            res.redirect('/cart')
         } else {
             const newCart = await Cart.create({ user: user._id, quantity: product.price });
             newCart.products.push(productId);
             newCart.save();
-            res.redirect('/products')
+            res.redirect('/cart')
         }
-         } 
-        
-     catch (e) {
+    } catch (e) {
         console.log(e)
         next(e)
     }

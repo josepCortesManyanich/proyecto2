@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href='/stylesheets/404page.css' rel="stylesheet"/>
   <link href='/stylesheets/products.css' rel="stylesheet"/>
-  <link href='/stylesheets/nav.css' rel="stylesheet"/>
+  {{!-- <link href='/stylesheets/nav.css' rel="stylesheet"/> --}}
   <link href='/stylesheets/home.css' rel="stylesheet"/>
   
   
@@ -18,6 +18,9 @@
 </head>
 <body>
   <header class="header" id="header">
+  </header>
+    {{{ body }}}
+
     <nav class="nav container">
     <div class="nav_menu" id="nav-menu">
       <ul class="nav_list">
@@ -37,21 +40,21 @@
         </li>
 
         <li class="nav_item">
-          <a href="#" class="nav_link">
+          <a href="/cart" class="nav_link">
             <i class='bx bxs-cart nav_icon'></i>
             <span class="nav_name">Cart</span>
           </a>
         </li>
 
         <li class="nav_item">
-          <a href="#" class="nav_link ">
+          <a href="/about" class="nav_link ">
             <i class='bx bxs-info-circle nav_icon'></i>
             <span class="nav_name">About</span>
           
           </a>
         </li>
         <li class="nav_item">
-          <a href="#" class="nav_link">
+          <a href="/auth/profile" class="nav_link">
             <i class='bx bxs-user nav_icon'></i>
             <span class="nav_name">Profile</span>
           </a>
@@ -59,8 +62,6 @@
       </ul>
     </div>
   </nav>
-  </header>
-    {{{ body }}}
-    <script src="/js/main.js"> </script>
+    {{!-- <script src="/js/main.js"> </script> --}}
 </body>
 </html>
