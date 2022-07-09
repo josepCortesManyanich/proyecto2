@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href='/stylesheets/404page.css' rel="stylesheet"/>
   <link href='/stylesheets/products.css' rel="stylesheet"/>
-  {{!-- <link href='/stylesheets/nav.css' rel="stylesheet"/> --}}
+  <link href='/stylesheets/nav.css' rel="stylesheet"/>
   <link href='/stylesheets/home.css' rel="stylesheet"/>
   
   
@@ -17,44 +17,14 @@
   <title>CHILLPILL</title>
 </head>
 <body>
-  <header class="header" id="header">
-  </header>
-    {{{ body }}}
-
-    <nav class="nav container">
-    <div class="nav_menu" id="nav-menu">
-      <ul class="nav_list">
-        <li class="nav_item">
-          <a href="/" class="nav_link">
-          <i class='bx bx-home-alt nav_icon active-link'></i>
-            <span class="nav_name">Home</span>
-          </a>
-        </li>
-
-
-        <li class="nav_item">
-          <a href="/cart" class="nav_link">
-            <i class='bx bxs-cart nav_icon'></i>
-            <span class="nav_name">Cart</span>
-          </a>
-        </li>
-
-        <li class="nav_item">
-          <a href="/about" class="nav_link ">
-            <i class='bx bxs-info-circle nav_icon'></i>
-            <span class="nav_name">About</span>
-          
-          </a>
-        </li>
-        <li class="nav_item">
-          <a href="/auth/profile" class="nav_link">
-            <i class='bx bxs-user nav_icon'></i>
-            <span class="nav_name">Profile</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  {{{ body }}}
+   <nav>
+    <ul>
+      <li><a href="/"><i class='bx bx-home-alt-2'></i></a></li>
+      <li><a href="/cart"><i class='bx bx-cart'></i></a></li>
+      <li><a href="/products"><i class='bx bx-store-alt' ></i></i></a></li>
+       <li><a href="/profile"><i class='bx bxs-user' ></i></li>
+    </ul>
     {{!-- <script src="/js/main.js"> </script> --}}
 </body>
 </html>
