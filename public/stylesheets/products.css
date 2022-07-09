@@ -112,7 +112,8 @@ img {
 .card__tag {
    display: inline-block;
    padding: var(--space-2) var(--space-4);
-   background-color: var(--color-gray-100);
+   background-color: white;
+   color: green;
    border-radius: var(--radius);
 }
 
