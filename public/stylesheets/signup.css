@@ -1,0 +1,103 @@
+#signup-form {
+    box-sizing: border-box;
+}
+
+.container h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 50px;
+    color: rgb(250, 186, 68);
+}
+
+.container p {
+    margin: 20px;
+}
+
+
+/* Full-width input fields */
+  input[type=text], input[type=email], input[type=password] {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
+  background-color: rgb(229, 255, 210);
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button .cancelbtn .singupbtn:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f4be36;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+button .cancelbtn .singupbtn {
+  float: left;
+  width: 50%;
+}
+a:visited {
+ color: white;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 1rem;
+  line-height: 1rem;
+
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.clearfix p {
+    text-align: center;
+}
+
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 390px) {
+  button .cancelbtn .singupbtn {
+    width: 80%;
+    margin-left: 20px;
+  }
+  .privacy {
+    text-align: center;
+}
+ .logo{
+    width: 100px;
+    position: absolute;
+    top:3px;
+    left:150px;
+    
+}
+}
