@@ -1,39 +1,36 @@
-<div class="Checkout-top">
+<div class="container">
 
-<h3>Your Products</h3>
-<a href="../auth/profile">{{user.name}}</a>
+    <div class="Checkout-top">
 
-</div>
+    <h3>Your Products</h3>
+    <a href="../auth/profile">{{user.name}}</a>
 
-<div class="Checkout-products">
+    </div>
 
-    {{#each cart.products}}
-    {{name}}
+    <div class="Checkout-products">
+        {{#each cart.products}}
+        <div class="card">
+            <h4>{{this.name}}</h4>
+            <br>
+            <img src={{this.image}} alt="{{this.name}}" width="200px" height="150"/>
+            <br>
+            {{price}}
+            <br>
+            <form  method="POST" action="/cart/addmore/{{this._id}}">
+            <button type="submit"> ADD MORE</button>
+            </form>
+            <form  method="POST" action="/cart/delete/{{this._id}}">
+            <button type="submit">DELETE</button>
+            </form>
+        </div>
+        {{/each}}
+    </div>
     <br>
-    <img src={{this.image}} alt="{{this.name}}" width="200px" height="150"/>
-    <br>
-    {{price}}
-    <br>
-    <form  method="POST"  action="/cart/addmore/{{this._id}}">
-     <button type="submit"> ADD MORE</button>
-    </form>
-    <form  method="POST"  action="/cart/delete/{{this._id}}">
-    <button type="submit">DELETE</button>
-    </form>
-    
-
-    {{/each}}
-</div>
-<br>
-
-<p>  Total = {{cart.quantity}} €</p>
-<button> <a href="/payment">Continue for pay</a></button>
-
-
-
-
-<div class="checkout-bottom">
-{{#if message}}
-<p>{{message}}</p>
-{{/if}}
+    <p>  Total = {{cart.quantity}} €</p>
+    <button> <a href="/payment">Continue to payment</a></button>
+    <div class="checkout-bottom">
+    {{#if message}}
+    <p>{{message}}</p>
+    {{/if}}
+    </div>
 </div>

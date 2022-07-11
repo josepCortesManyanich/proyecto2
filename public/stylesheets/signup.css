@@ -6,12 +6,17 @@
 .signup-h1 {
     text-align: center;
     font-size: 2rem;
-    margin-top: 50px;
+    margin-top: 100px;
     color: rgb(250, 186, 68);
 }
 
 .container p {
     margin: 20px;
+}
+
+.error {
+    background: linear-gradient(var(--basic-white), rgb, rgb(47, 47, 47));
+    color: red;
 }
 
 
@@ -51,7 +56,7 @@ button .cancelbtn .singupbtn:hover {
   opacity:1;
 }
 
-/* Extra styles for the cancel button */
+/* Extra styles for the Login button */
 .cancelbtn {
   padding: 14px 20px;
   background-color: #f4be36;
@@ -62,7 +67,8 @@ button .cancelbtn .singupbtn {
   float: left;
   width: 50%;
 }
-a:visited {
+
+a:visited{
  color: white;
 }
 
@@ -85,11 +91,12 @@ a:visited {
 }
 
 
-/* Change styles for cancel button and signup button on extra small screens */
+/* Change styles for login button and signup button on extra small screens */
 @media screen and (max-width: 390px) {
   button .cancelbtn .singupbtn {
     width: 80%;
     margin-left: 20px;
+    
   }
   .privacy {
     text-align: center;
@@ -99,6 +106,7 @@ a:visited {
     position: absolute;
     top:3px;
     left:150px;
+    
     
 }
 }

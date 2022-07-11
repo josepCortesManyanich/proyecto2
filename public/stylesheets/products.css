@@ -1,32 +1,48 @@
-
 .card {
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-   max-width: 300px;
-   margin: auto;
-   text-align: center;
-   font-family: arial;
-   border-radius: 10px;
-   margin-top: 1rem;
-   margin-bottom: 1rem;
- }
- 
- .price {
-   color: grey;
-   font-size: 22px;
- }
- 
- .card button {
-   border: none;
-   outline: 0;
-   padding: 12px;
-   color: white;
-   background-color: rgb(229, 238, 218);
-   text-align: center;
-   cursor: pointer;
-   width: 100%;
-   font-size: 18px;
- }
- 
- .card button:hover {
-   opacity: 1;
- }
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+  border-radius: 15px;
+  margin: 1rem 0;
+  padding: 20px;
+  border-bottom: var(--light-orange), 3px solid;
+}
+
+.card button a {
+  color: white;
+}
+
+.price {
+  color: grey;
+  font-size: 1.5rem;
+}
+
+.card button {
+  border: none;
+  padding: 12px;
+  color: white;
+  background-color: var(--light-green);
+  text-align: center;
+  width: 100%;
+  font-size: 18px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.detail img {
+  margin: 20px 0;
+}
+
+.container i {
+  position:absolute;
+  top:9.688rem;
+  left:7rem;
+  color: var(--light-orange);
+}
+
+.container h2 {
+  font-size:3rem;
+  text-align:center;
+  margin-left: 50px;
+  padding-bottom: 10px;
+  margin-top: 150px;
+  margin-bottom: 2.5rem;
+}

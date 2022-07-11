@@ -1,13 +1,19 @@
-<h2 style="text-align:center">Available Products</h2>
-{{#each productsfromDB}}
-<div class="card">
-  <img src="{{this.image}}" alt="{{this.title}}" style="width:100%">
-  <h1>{{this.title}}</h1>
-  <p class="price">${{this.price}}</p>
-  <p>{{this.description}}</p>
-  <p><button <a href="products/details/{{this._id}}">Add to Cart</button></p>
+<div class="container detail">
+    <img class="logo" src="/images/Logo.png" alt="logo Chill & Pill">
+  <h2><i class='bx bx-store-alt bx-lg' ></i>Shop</h2>
+  {{#each productsfromDB}}
+  <div class="card">
+    <img src="{{this.image}}" alt="{{this.title}}" width="100%"/>
+    <h3>{{this.title}}</h3>
+    <p class="price">For Only {{this.price}}$</p>
+    
+    <a href="/products/details/{{this._id}}"><button>See more</button></a>
+    <form method="POST" action="/cart/{{this._id}}">
+      <button type="submit">Add to cart</button>
+    </form>
+  </div>
+  {{/each}}
 </div>
-{{/each}}
 
 
 

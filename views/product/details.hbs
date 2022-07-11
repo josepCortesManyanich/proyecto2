@@ -1,23 +1,21 @@
-
-<section class="container section section_height" id="shop"></section>
-<h1>Details {{productsfromDB.name}}</h1>
+<div class="container">
+  <h1>{{productsfromDB.name}}</h1>
     <div>
-    <p> {{productsfromDB.name}}</p>
-    <br>
-    <img src={{productsfromDB.image}} alt="{{productsfromDB.name}}" width="200px" height="150"/>
-    <br>
-    <p>{{productsfromDB.price}}€/g</p>
-    <br>
-    <p>{{productsfromDB.cbd}}%</p>
-    <br>
-    <p>{{productsfromDB.description}}</p>
-    <br>
-  
-  {{#if userIsAdmin}}
-  <a href="/products/edit/{{productsfromDB._id}}">Edit</a>
-  <a href="/products/delete/{{productsfromDB._id}}">Delete</a>
-  {{/if}}
-  <form  method="POST"  action="/cart/{{productsfromDB._id}}">
-  <button type="submit"> ADD TO CART!</button>
-  </form>
-  </div>
+      <img src={{productsfromDB.image}} alt="{{productsfromDB.name}}" width="200px"/>
+      <br>
+      <p>{{productsfromDB.price}}€/g</p>
+      <br>
+      <p>{{productsfromDB.cbd}}%</p>
+      <br>
+      <p>{{productsfromDB.description}}</p>
+      <br>
+    
+    {{#if userIsAdmin}}
+    <a href="/products/edit/{{productsfromDB._id}}"><button>Edit</button></a>
+    <a href="/products/delete/{{productsfromDB._id}}"><button>Delete</button></a>
+    {{/if}}
+    <form  method="POST"  action="/cart/{{productsfromDB._id}}">
+      <button type="submit">ADD TO CART</button>
+    </form>
+    </div>
+</div>
