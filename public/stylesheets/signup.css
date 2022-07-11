@@ -1,8 +1,9 @@
 #signup-form {
     box-sizing: border-box;
+    background: linear-gradient(green, white, green);
 }
 
-.container h1 {
+.signup-h1 {
     text-align: center;
     font-size: 2rem;
     margin-top: 50px;
