@@ -1,8 +1,6 @@
 const router = require('express').Router();
-const app = require('../app');
 const Product = require('../models/producModel');
-const isLoggedIn = require('../middlewares');
-const isAdmin = require('../middlewares');
+const isAdmin = require('../middlewares/isAdmin');
 
 // @desc    Products list/ All the products
 // @route   GET /products
@@ -86,7 +84,11 @@ router.post('/edit/:productId',isAdmin, async(req,res,next) =>{
 // @access  Public
 router.get('/details/:productId', async(req,res,next) => {
     const { productId } = req.params;
-    const userIsAdmin = req.session.currentUser.role === 'admin' ? true : false;
+    let userIsAdmin;
+    if (req.session.currentUser) {
+        userIsAdmin = req.session.currentUser.role === 'admin' ? true : false;
+    } 
+    console.log('user is admin: ', userIsAdmin)
     try {
         const productsfromDB = await Product.findById(productId)
         console.log(productsfromDB);

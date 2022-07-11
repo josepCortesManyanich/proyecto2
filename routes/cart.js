@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const app = require('../app');
 const Cart = require('../models/cartmodel');
-const isLoggedIn = require('../middlewares');
+const isLoggedIn = require('../middlewares/isLoggedIn');
 const User = require('../models/User');
 const Product = require('../models/producModel');
-router.get('/', async (req, res, next) => {
+
+router.get('/', isLoggedIn, async (req, res, next) => {
     const user = req.session.currentUser;
     try {
         const cart = await Cart.findOne({ user: user._id }).populate('products');
@@ -18,10 +18,10 @@ router.get('/', async (req, res, next) => {
     } catch (e) {
         console.log(e)
         next(e)
-       
     }
-})
-router.post('/:productId', async(req,res,next) => {
+});
+
+router.post('/:productId', isLoggedIn, async(req,res,next) => {
     // const {totalSells, quantity, productsNumber} = req.body;
      const { productId } = req.params
     //  const parsedSells = parseInt(totalSells);
@@ -50,8 +50,9 @@ router.post('/:productId', async(req,res,next) => {
         next(e)
     }
 })
+
 //@route For add more products in the cart
-router.post('/addmore/:productId', async(req,res,next) => {
+router.post('/addmore/:productId', isLoggedIn, async(req,res,next) => {
     
      const { productId } = req.params
      const user = req.session.currentUser
@@ -68,7 +69,6 @@ router.post('/addmore/:productId', async(req,res,next) => {
         newCart.products.push(product._id);
         newCart.save();
         res.redirect('/products')
-        
     }
      catch (e) {
         console.log(e)
@@ -76,39 +76,32 @@ router.post('/addmore/:productId', async(req,res,next) => {
     }
 })
 
-
-router.post('/delete/:productId', async(req,res,next) => {
+router.post('/delete/:productId', isLoggedIn, async (req, res, next) => {
     const { productId } = req.params
     const user = req.session.currentUser;
     try {
-       const product = await Product.findById(productId)
-    const prevCart = await Cart.findOne({ user: user._id });
-    console.log(prevCart)
-    //eliminar el product id de la array, prevCart.products, prevcart.save()
-    
-      
-    for(let i = 0; i < prevCart.products.length; i++){
-        if (prevCart.products[i] === product){
-            console.log(product)
-            return Cart.products.findOneAndDelete({product: product._id})
-            
-        }    
-
-    }
+        const product = await Product.findById(productId)
+        const prevCart = await Cart.findOne({ user: user._id });
+        console.log(prevCart)
+        //eliminar el product id de la array, prevCart.products, prevcart.save()
+        for (let i = 0; i < prevCart.products.length; i++) {
+            if (prevCart.products[i] === product) {
+                console.log(product)
+                return Cart.products.findOneAndDelete({ product: product._id })
+            }
+        }
                 
-    const previousPrice = prevCart.quantity;
-    const newPrice = parseFloat(previousPrice - product.price).toFixed(2);
-    const newCart = await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
+        const previousPrice = prevCart.quantity;
+        const newPrice = parseFloat(previousPrice - product.price).toFixed(2);
+        const newCart = await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, { new: true });
         
-    newCart.save();
-    res.redirect('/products')
+        newCart.save();
+        res.redirect('/products')
     
-    }catch (e) {
+    } catch (e) {
         console.log(e)
         next(e)
     }
-})
-
-
+});
 
 module.exports= router;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const isLoggedIn = require('../middlewares');
+const isLoggedIn = require('../middlewares/isLoggedIn');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -12,7 +12,7 @@ router.get('/signup', async (req, res, next) => {
   res.render('auth/signup');
 })
 
-router.get('/profile', async (req, res, next) => {
+router.get('/profile', isLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
   res.render('auth/profile', { user })
 })
