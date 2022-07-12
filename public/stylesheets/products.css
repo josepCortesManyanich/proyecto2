@@ -32,17 +32,21 @@
 }
 
 .container i {
-  position:absolute;
-  top:9.688rem;
-  left:7rem;
+  position: absolute;
+  top: 9.688rem;
+  left: 7rem;
   color: var(--light-orange);
 }
 
 .container h2 {
-  font-size:3rem;
-  text-align:center;
+  font-size: 3rem;
+  text-align: center;
   margin-left: 50px;
   padding-bottom: 10px;
   margin-top: 150px;
   margin-bottom: 2.5rem;
+}
+
+div.product-detail {
+  line-height: 2;
 }

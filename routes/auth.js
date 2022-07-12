@@ -36,10 +36,6 @@ router.post('/signup', async (req, res, next) => {
   if(!regex.test(password)){
     res.render('auth/signup', { error: 'Your password must be at least 6 characters long, contain at least one number and have a mixture of uppercase and lowercase letters.' })
   }
-
-  // Validation that password meets requirements
-  // Add second password check
-  
   try {
     const salt = await bcrypt.genSalt(saltRounds);
     const hashedPassword = await bcrypt.hash(password, salt);

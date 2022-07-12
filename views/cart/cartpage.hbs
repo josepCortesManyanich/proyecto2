@@ -1,12 +1,12 @@
 <div class="container">
-
+        
+    {{#if message}}
+    <p>{{message}}</p>
+    {{else}}
     <div class="Checkout-top">
-
-    <h3>Your Products</h3>
-    <a href="../auth/profile">{{user.name}}</a>
-
+        <h3>Your Products</h3>
+        <a href="/auth/profile">{{user.name}}</a>
     </div>
-
     <div class="Checkout-products">
         {{#each cart.products}}
         <div class="card">
@@ -16,9 +16,9 @@
             <br>
             {{price}}
             <br>
-            <form  method="POST" action="/cart/addmore/{{this._id}}">
+            {{!-- <form  method="POST" action="/cart/addmore/{{this._id}}">
             <button type="submit"> ADD MORE</button>
-            </form>
+            </form> --}}
             <form  method="POST" action="/cart/delete/{{this._id}}">
             <button type="submit">DELETE</button>
             </form>
@@ -29,8 +29,6 @@
     <p>  Total = {{cart.quantity}} €</p>
     <button> <a href="/payment">Continue to payment</a></button>
     <div class="checkout-bottom">
-    {{#if message}}
-    <p>{{message}}</p>
-    {{/if}}
     </div>
+    {{/if}}
 </div>

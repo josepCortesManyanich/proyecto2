@@ -8,9 +8,10 @@ const Product = require('../models/producModel')
 
 router.get('/', async (req, res, next) => {
     const user = req.session.currentUser;
+    const cart = await Cart.findOne({ user: user._id });
+    // Pintamos en la vista de pago el total de precio, etc.
     try {
         res.render('payment/payment')
-        
     } catch (e) {
         console.log(e)
         next(e)
@@ -20,19 +21,19 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async(req,res,next) =>{
     const user = req.session.currentUser;
-    const {method,adress, phoneNumber} = req.body
+    const { method, adress, phoneNumber } = req.body
+    const cart = await Cart.findOne({ user: user._id });
     const parsedPhoneNumber = parseInt(phoneNumber);
     if (!method|| !adress || !phoneNumber ) {
-        res.render('payment/payment', { error: 'Please fill all fields to pay ' });
+        res.render('payment/payment', { error: 'Please fill all fields to pay' });
         return;
     }
     try {
-        const finalPayment = {method, adress, parsedPhoneNumber}
-        const payment = await Payment.create(finalPayment)
-        res.redirect('/products')
+        const finalPayment = {method, adress, parsedPhoneNumber, quantity: cart.quantity, products: cart.products, user: user._id}
+        const payment = await Payment.create(finalPayment);
         if(payment){
-            await Cart.findByIdAndDelete({ user: user._id }).populate('products');
-            res.render('product/allproducts')
+            await Cart.findByIdAndDelete(cart._id);
+            res.redirect('/products')
         }
     } catch (e) {
         console.log(e)
