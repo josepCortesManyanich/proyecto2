@@ -50,6 +50,7 @@ button {
   cursor: pointer;
   width: 100%;
   opacity: 0.9;
+  border-radius: 10px;
 }
 
 button .cancelbtn .singupbtn:hover {

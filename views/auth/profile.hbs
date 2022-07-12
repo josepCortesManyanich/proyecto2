@@ -1,8 +1,17 @@
-<div class="profile-container">
-   <h1>Welcome to Chill&Pill {{#if user}}{{user.username}}{{/if}}</h1>
- 
-    <p>User Name: {{user.username }}</p> <br>
-    <p>Email:{{ user.email }}</p> <br>
+<div>
+   <img class="logo" src="/images/Logo.png" alt="logo Chill & Pill">
+   {{!-- <i class="fas fa-solid fa-id-badge fa-10x"></i> --}}
+</div>
 
-    <form action="/auth/logout" method="post" ><button type="submit" >Log Out</button></form>
+<div class="profile-container">
+   <h1>Welcome Home {{#if user}}{{user.username}}{{/if}}!</h1>
+   <img  class="profile-img" src="/images/bglanding.jpeg" alt="user image" onerror="this.remove()">
+ <div class="user-det">
+   <label><b>User Name</b></label>
+    <input type="text" placeholder="{{user.username}}" value="{{user.username}}">
+    
+    <label><b>Email</b></label>
+    <input type="email" value="{{user.email}}" required>
+</div>
+    <form action="/auth/logout" method="post" ><button class="signupbtn" type="submit" >Log Out</button></form>
    </div>

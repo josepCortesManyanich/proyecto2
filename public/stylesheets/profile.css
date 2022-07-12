@@ -1,16 +1,36 @@
-/* .profile-container {
+.profile-container {
     width: 80%;
-    margin:20px;    
+    margin-top:150px;
+    margin-left: 50px;    
 }
 
 .profile-container h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    margin: 60px;
     color: var(--light-orange);
+    text-align: center;
+    line-height: 1.5;
 
+}
+
+.user-det{
+    position: relative;
+    left: 15px;
 }
 
 .profile-container form button {
     border-radius: 20px;
-} */
+    padding-right: 20px;
+}
+
+.profile-img {
+    width:300px;
+    border-radius: 30%;
+    position: relative;
+    top: -10px;
+    left: 0px;
+    margin-bottom: 30px;
+
+}
 
 
