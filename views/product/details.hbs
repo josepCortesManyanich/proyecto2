@@ -1,7 +1,7 @@
 <div class="container">
   <h1>{{productsfromDB.name}}</h1>
     <div>
-      <img src={{productsfromDB.image}} alt="{{productsfromDB.name}}" width="200px"/>
+      <img src={{productsfromDB.image}} alt="{{productsfromDB.name}}" width="200px" onerror="this.remove()"/>
       <br>
       <p>{{productsfromDB.price}}€/g</p>
       <br>

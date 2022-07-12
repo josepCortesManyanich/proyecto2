@@ -3,7 +3,7 @@
   <h2><i class='bx bx-store-alt bx-lg' ></i>Shop</h2>
   {{#each productsfromDB}}
   <div class="card">
-    <img src="{{this.image}}" alt="{{this.title}}" width="100%"/>
+    <img src="{{this.image}}" alt="{{this.title}}" width="100%" onerror="this.remove()"/>
     <h3>{{this.title}}</h3>
     <p class="price">For Only {{this.price}}$</p>
     
