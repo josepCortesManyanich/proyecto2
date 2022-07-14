@@ -12,6 +12,10 @@
     line-height: 1.5;
 
 }
+.user-det input[type=text] {
+    width: 90%;
+    border: none;
+}
 
 .user-det{
     position: relative;

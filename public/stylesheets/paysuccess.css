@@ -1,0 +1,8 @@
+.success{
+    text-align: center;
+    margin: 20px 30px;
+}
+
+.success p {
+    color: var(--grey);
+}

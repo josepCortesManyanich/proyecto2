@@ -12,7 +12,7 @@ router.get('/', isLoggedIn, async (req, res, next) => {
             res.render('cart/cartpage', { cart })
             return;
         } else {
-            res.render('cart/cartpage', { message: 'Still no products in your cart. Add some on the store! ' })
+            res.render('cart/cartpage', { message: "You Still don't have any items in the cart, discover our products. " })
             return;
         }
     } catch (e) {

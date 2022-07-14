@@ -21,19 +21,19 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async(req,res,next) =>{
     const user = req.session.currentUser;
-    const { method, adress, phoneNumber } = req.body
+    const { cardname, address, cardNumber, expyear, cvv, expmonth } = req.body
     const cart = await Cart.findOne({ user: user._id });
-    const parsedPhoneNumber = parseInt(phoneNumber);
-    if (!method|| !adress || !phoneNumber ) {
+    const parsedCardNumber = parseInt(cardNumber);
+    if (!cardname|| !address || !cardNumber || !expyear || !cvv || !expmonth) {
         res.render('payment/payment', { error: 'Please fill all fields to pay' });
         return;
     }
     try {
-        const finalPayment = {method, adress, parsedPhoneNumber, quantity: cart.quantity, products: cart.products, user: user._id}
+        const finalPayment = {cardname, address, parsedCardNumber, expyear, cvv, expmonth, quantity: cart.quantity, products: cart.products, user: user._id}
         const payment = await Payment.create(finalPayment);
         if(payment){
             await Cart.findByIdAndDelete(cart._id);
-            res.redirect('/products')
+            res.redirect('/paymentdone')
         }
     } catch (e) {
         console.log(e)

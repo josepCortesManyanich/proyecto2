@@ -1,10 +1,17 @@
 <div class="container">
         
     {{#if message}}
-    <p>{{message}}</p>
+    <div class="empty-cart">
+        <i class="fas fa-duotone fa-cart-plus fa-7x"></i>
+        <h3>Empty Cart</h3>
+        <p>{{message}}</p>
+        <button> <a href="/products">Discover</a></button>
+        
+    </div>
+    
     {{else}}
     <div class="Checkout-top">
-        <h3>Your Products</h3>
+        <h3>My Cart</h3>
         <a href="/auth/profile">{{user.name}}</a>
     </div>
     <div class="Checkout-products">
@@ -14,11 +21,8 @@
             <br>
             <img src={{this.image}} alt="{{this.name}}" width="200px" height="150" onerror="this.remove()"/>
             <br>
-            {{price}}
+            <strong>Price {{price}} $</strong>
             <br>
-            {{!-- <form  method="POST" action="/cart/addmore/{{this._id}}">
-            <button type="submit"> ADD MORE</button>
-            </form> --}}
             <form  method="POST" action="/cart/delete/{{this._id}}">
             <button type="submit">DELETE</button>
             </form>
@@ -26,8 +30,11 @@
         {{/each}}
     </div>
     <br>
-    <p>  Total = {{cart.quantity}} €</p>
+    
+    <div class="total">
+        <p> <strong> Total {{cart.quantity}}$</strong></p>
     <button> <a href="/payment">Continue to payment</a></button>
+    </div>
     <div class="checkout-bottom">
     </div>
     {{/if}}

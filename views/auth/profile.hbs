@@ -7,10 +7,10 @@
    <h1>Welcome Home {{#if user}}{{user.username}}{{/if}}!</h1>
    <img  class="profile-img" src="/images/bglanding.jpeg" alt="user image" onerror="this.remove()">
  <div class="user-det">
-   <label><b>User Name</b></label>
+   <label><b> Your User Name</b></label>
     <input type="text" placeholder="{{user.username}}" value="{{user.username}}">
     
-    <label><b>Email</b></label>
+    <label><b> Your Email Address</b></label>
     <input type="email" value="{{user.email}}" required>
 </div>
     <form action="/auth/logout" method="post" ><button class="signupbtn" type="submit" >Log Out</button></form>

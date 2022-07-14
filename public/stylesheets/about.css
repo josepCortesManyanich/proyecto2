@@ -1,4 +1,69 @@
-.about-container{
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+:root {
+    --light-green: #82b851;
+    --light-light-green: #abd881;
+    --dark-green: #5d7e4c;
+    --orange: #f17f35;
+    --light-orange: #f2a16a;
+    --text-color: rgb(47, 47, 47);
+    --basic-white: #f4f4f4;
+    --grey: rgb(159, 159, 159);
+    font-size: 16px;
+  }
+ 
+ div .our-story{
     display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 1000px;
+    margin: 30px;
+    text-align: center;
+    color: var(--grey);
+
+}
+.our-story {
+    line-height: 1.5;
+}
+
+.our-story h1{
+    color: var(--light-light-green);
+    font-size: 3rem;
+}
+.founders h1 {
+    color: var(--light-light-green);
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 3rem;
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+
+.founders{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 1000px;
+    margin-bottom: 0;
     
+}
+
+.founders img {
+    margin: 20px 15px ;
+    width:250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.role{
+    text-align: center;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.role h5 {
+    color: rgb(156, 156, 156);
+    text-transform: uppercase;
+    text-decoration: underline var(--light-light-green) 3px;
+    line-height: 1.7;
 }
