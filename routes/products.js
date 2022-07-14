@@ -70,7 +70,6 @@ router.post('/edit/:productId',isAdmin, async(req,res,next) =>{
         return;
     }
     try {
-        // const productsfromDB = { name, family, priceParsed, cbdParsed };
         const updatedProduct = await Product.findByIdAndUpdate(productId, { name, family, price: priceParsed, cbd: cbdParsed, description }, { new: true })
         res.redirect(`/products/details/${productId}`);
     } catch (e) {

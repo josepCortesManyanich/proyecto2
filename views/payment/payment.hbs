@@ -29,7 +29,6 @@
     
   </form>  
 </div> --}}
-
 <div class="row">
   <div class="col-75">
     <div class="container-pay">
@@ -51,6 +50,7 @@
 
           <div class="col-50">
             <h3>Payment</h3>
+            <img class="payment-logo" src="/images/Logo.png" alt="Chill & Pill Logo" onerror="this.remove()">
             <label for="fname">Accepted Cards</label>
             <div class="icon-container">
               <i class="fa fa-cc-visa" style="color:navy;"></i>
@@ -80,7 +80,8 @@
         <label>
           <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
         </label>
-        <input type="submit" value="PAY" class="btn-pay">
+        <button type="submit" class="btn-pay">Pay Now!</button>
+        {{!-- <input type="submit" value="PAY" class="btn-pay"> --}}
         {{#if error}}
     <p style="color: red;">{{ error }}</p>
     {{/if}}
