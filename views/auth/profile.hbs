@@ -1,34 +1,38 @@
 <div>
    <img class="logo" src="/images/Logo.png" alt="logo Chill & Pill" onerror="this.remove()">
-   {{!-- <i class="fas fa-solid fa-id-badge fa-10x"></i> --}}
 </div>
 
 <div class="profile-container">
-   <h1>Welcome Home {{#if user}}{{user.username}}{{/if}}!</h1>
-   <img  class="profile-img" src="/images/bglanding.jpeg" alt="user image" onerror="this.remove()">
+   <h4>Welcome Home {{#if user}}{{user.username}}{{/if}}!</h4>
  <div class="user-det">
-   <label><b> Your User Name</b></label>
+   <label><b>User Name</b></label>
     <input type="text" placeholder="{{user.username}}" value="{{user.username}}">
     
-    <label><b> Your Email Address</b></label>
+    <label><b>Email Address</b></label>
     <input type="email" value="{{user.email}}" required>
-    <div>
-
-   <h5>Your last orders:</h5>
+  <div>
+    <form action="/auth/logout" method="post" ><button class="signupbtn profile" type="submit" >Log Out</button></form>
+    {{#if isAdmin}} 
+        <form action="/products/create" method="POST" ><button class="signupbtn" type="submit" >Create products</button></form>
+        {{/if}}
+  </div>
+</div>
+    <div class="history">
+      <h3>Your last orders:</h3>
      {{#each payments}}
+     
      <div class="card payment">
-            <h4>Day: {{this.createdAt}}</h4>
-            <h4>Sent to: {{this.adress}}</h4>
-            <h4>Phone: {{this.phoneNumber}}</h4>
-            <h4>Total: {{this.quantity}} $</h4>
-            <ul>
             {{#each this.products}}
-            <p>{{this.name}}</p>
+            <p><strong>Product:</strong> {{this.name}}</p>
             {{/each}}
+            
+            <h4>Sent to: {{this.address}}</h4>
+            <h4>Phone: {{this.phoneNumber}}</h4>
+            <h4>Total Bill: {{this.quantity}} $</h4>
+            <p class="date">On {{this.createdAt}}</p>
+            <ul>
             </ul>
    </div>
         {{/each}}
         </div>
-</div>
-    <form action="/auth/logout" method="post" ><button class="signupbtn" type="submit" >Log Out</button></form>
    </div>

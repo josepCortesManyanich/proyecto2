@@ -1,8 +1,18 @@
 .success{
     text-align: center;
     margin: 20px 30px;
+    
 }
 
 .success p {
     color: var(--grey);
+    margin: 20px 30px;
+}
+
+.success i {
+    width: 50px;
+}
+
+.success h2 {
+    margin: 25px 0;
 }
