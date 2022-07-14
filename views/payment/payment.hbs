@@ -1,34 +1,4 @@
-{{!-- 
 
-<div class="payment">
-
-  <h1> Complete the next states</h1>
-  <form action="/payment" method="POST">
- 
-    <label>Adress</label>
-      <input type="text" name="adress" placeholder="C/Pamplona 94 " />
-    <br>
-          
-    <label>Phone Number</label>
-      <input type="number"  name="phoneNumber" placeholder="652869324" />
-    <br>
-    
-    <label for="method">Payment method</label>
-    <select id="method" name="method">
-      <option value="Credit card">Credit Card</option>
-      <option value="In cash">In cash</option>
-    <br>
-    </select>
-    
-    
-    <button type="submit">Pay Now</button>
-    
-    {{#if error}}
-    <p style="color: red;">{{ error }}</p>
-    {{/if}}
-    
-  </form>  
-</div> --}}
 <div class="row">
   <div class="col-75">
     <div class="container-pay">
@@ -38,13 +8,13 @@
           <div class="col-50">
             <h3>Billing Address</h3>
             <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Juan Cardenas">
+            <input type="text" id="fname" name="firstname" placeholder="Your Name">
             <label for="email"><i class="fa fa-envelope"></i> Email</label>
-            <input type="text" id="email" name="email" placeholder="youremail@example.com">
+            <input type="text" id="email" name="email" placeholder="Email Address">
             <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
             <input type="text" id="adr" name="address" placeholder=" your street address">
             <label for="city"><i class="fa fa-institution"></i> City</label>
-            <input type="text" id="city" name="city" placeholder="Barcelona">
+            <input type="text" id="city" name="city" placeholder="Your city">
 
           </div>
 
