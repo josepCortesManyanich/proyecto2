@@ -5,6 +5,7 @@ const isLoggedIn = require('../middlewares/isLoggedIn');
 const User = require('../models/User');
 const Cart = require('../models/cartmodel');
 const Product = require('../models/producModel')
+
 // @desc    Product payment 
 // @route   GET payment/
 // @access  Public
@@ -25,10 +26,11 @@ router.get('/', async (req, res, next) => {
 // @access  Private
 router.post('/', async(req,res,next) =>{
     const user = req.session.currentUser;
-    const { cardname, address, cardNumber, expyear, cvv, expmonth } = req.body
+    const { cardname, address, cardnumber, expyear, cvv, expmonth } = req.body
     const cart = await Cart.findOne({ user: user._id });
-    const parsedCardNumber = parseInt(cardNumber);
-    if (!cardname|| !address || !cardNumber || !expyear || !cvv || !expmonth) {
+    const parsedCardNumber = parseInt(cardnumber);
+    if (!cardname || !address || !cardnumber || !expyear || !cvv || !expmonth) {
+        console.log(req.body)
         res.render('payment/payment', { error: 'Please fill all fields to pay' });
         return;
     }
@@ -37,7 +39,7 @@ router.post('/', async(req,res,next) =>{
         const payment = await Payment.create(finalPayment);
         if(payment){
             await Cart.findByIdAndDelete(cart._id);
-            res.redirect('/Products')
+            res.redirect('/payment/success')
         }
     } catch (e) {
         console.log(e)
@@ -47,22 +49,22 @@ router.post('/', async(req,res,next) =>{
 // @desc    Product payment 
 // @route   GET payment/payment-success
 // @access  Public
-router.get('/payment-success', (req, res, next) => {
-    res.render('/payment/paymentdone')
+router.get('/success', (req, res, next) => {
+    res.render('payment/paymentdone')
 })
 
 
-router.get('/auth/profile', isLoggedIn, async (req, res, next) => {
-    const user = req.session.currentUser;
-    try {
-        const payment = await Payment.findOne({ user: user._id });
-        res.render('auth/profile', {payment})
+// router.get('/auth/profile', isLoggedIn, async (req, res, next) => {
+//     const user = req.session.currentUser;
+//     try {
+//         const payment = await Payment.find({ user: user._id }).populate('products');
+//         res.render('auth/profile', {payment, user})
         
-    } catch (e) {
-        console.log(e)
-        next(e)
-    }
-});
+//     } catch (e) {
+//         console.log(e)
+//         next(e)
+//     }
+// });
 
 
 module.exports = router;

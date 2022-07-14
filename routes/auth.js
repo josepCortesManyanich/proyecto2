@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const isLoggedIn = require('../middlewares/isLoggedIn');
 const User = require('../models/User');
+const Payment = require('../models/payment');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -14,7 +15,13 @@ router.get('/signup', async (req, res, next) => {
 
 router.get('/profile', isLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
-  res.render('auth/profile', { user })
+  const isAdmin = user.role === 'admin' ? true : false;
+  try {
+    const payments = await Payment.find({ user: user._id }).populate('products');
+    res.render('auth/profile', { payments, user, isAdmin })
+  } catch (error) {
+    next(error)
+  }
 })
 // @desc    Displays form view to log in
 // @route   GET /auth/login

@@ -13,19 +13,20 @@
     <label><b> Your Email Address</b></label>
     <input type="email" value="{{user.email}}" required>
     <div>
-     {{#each payment.user}}
-       
-            <h4>{{this.method}}</h4>
-            <br>
-            <h4>{{this.adress}}</h4>
-            <br>
-            <h4>{{this.phoneNumber}}</h4>
-            <br>
-            <h4>{{this.quantity}}</h4>
-            <br>
-            <h4>{{this.products}}</h4>
-           
-       
+
+   <h5>Your last orders:</h5>
+     {{#each payments}}
+     <div class="card payment">
+            <h4>Day: {{this.createdAt}}</h4>
+            <h4>Sent to: {{this.adress}}</h4>
+            <h4>Phone: {{this.phoneNumber}}</h4>
+            <h4>Total: {{this.quantity}} $</h4>
+            <ul>
+            {{#each this.products}}
+            <p>{{this.name}}</p>
+            {{/each}}
+            </ul>
+   </div>
         {{/each}}
         </div>
 </div>
