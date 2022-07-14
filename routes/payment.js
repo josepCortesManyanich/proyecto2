@@ -52,4 +52,17 @@ router.get('/payment-success', (req, res, next) => {
 })
 
 
+router.get('/auth/profile', isLoggedIn, async (req, res, next) => {
+    const user = req.session.currentUser;
+    try {
+        const payment = await Payment.findOne({ user: user._id });
+        res.render('auth/profile', {payment})
+        
+    } catch (e) {
+        console.log(e)
+        next(e)
+    }
+});
+
+
 module.exports = router;
