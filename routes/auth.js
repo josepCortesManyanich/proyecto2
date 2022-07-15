@@ -5,6 +5,7 @@ const User = require('../models/User');
 const Payment = require('../models/payment');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const fileUploader = require('../db/cloudinary.config');
 
 // @desc    Displays form view to sign up
 // @route   GET /auth/signup
@@ -23,6 +24,16 @@ router.get('/profile', isLoggedIn, async (req, res, next) => {
     next(error)
   }
 })
+
+router.post('/profile', fileUploader.single('movie-cover-image'), async (req, res) => {
+  const { imageUrl } = req.body;
+ try {
+  User.create({ imageUrl: req.file.path })
+ } catch (error) {
+   console.log(error)
+ }
+ 
+});
 // @desc    Displays form view to log in
 // @route   GET /auth/login
 // @access  Public
@@ -67,7 +78,7 @@ router.post('/login', async (req, res, next) => {
     redirect('/products/create')
   }
   try {
-    // Remember to assign user to session cookie:
+   
     const user = await User.findOne({ email: email });
     if (!user) {
       res.render('auth/login', { error: "User not found, Please Try Again or Sign up" });
