@@ -4,6 +4,8 @@ const isLoggedIn = require('../middlewares/isLoggedIn');
 const User = require('../models/User');
 const Product = require('../models/producModel');
 
+
+//@route for show all the products in the cart
 router.get('/', isLoggedIn, async (req, res, next) => {
     const user = req.session.currentUser;
     try {
@@ -21,6 +23,7 @@ router.get('/', isLoggedIn, async (req, res, next) => {
     }
 });
 
+//@route for add products in the cart
 router.post('/:productId', isLoggedIn, async(req,res,next) => {
     const { productId } = req.params;
     const user = req.session.currentUser;
@@ -46,29 +49,7 @@ router.post('/:productId', isLoggedIn, async(req,res,next) => {
     }
 })
 
-//@route For add more products in the cart
-// router.post('/addmore/:productId', isLoggedIn, async(req,res,next) => {
-//     const { productId } = req.params
-//     const user = req.session.currentUser
-//     try {
-//         const product = await Product.findById(productId);
-//         console.log(product)
-//         const prevCart = await Cart.findOne({ user: user._id });
-//         const previousPrice = prevCart.quantity;
-//         const previousTotal = prevCart.totalProduct
-//         const newTotal = parseInt(previousTotal + 1)
-//         const newPrice = parseFloat(previousPrice + product.price).toFixed(2);
-//         await Cart.findByIdAndUpdate(prevCart._id, { quantity: newPrice }, {totalProduct: newTotal}, { new: true });
-//         const newCart = await Cart.create({ user: user._id, quantity: product.price })
-//         newCart.products.push(product._id);
-//         newCart.save();
-//         res.redirect('/products')
-//     }
-//      catch (e) {
-//         console.log(e)
-//         next(e)
-//     }
-// })
+//@route for delete products in cart
 
 router.post('/delete/:productId', isLoggedIn, async (req, res, next) => {
     const { productId } = req.params

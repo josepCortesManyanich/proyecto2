@@ -54,17 +54,5 @@ router.get('/success', (req, res, next) => {
 })
 
 
-// router.get('/auth/profile', isLoggedIn, async (req, res, next) => {
-//     const user = req.session.currentUser;
-//     try {
-//         const payment = await Payment.find({ user: user._id }).populate('products');
-//         res.render('auth/profile', {payment, user})
-        
-//     } catch (e) {
-//         console.log(e)
-//         next(e)
-//     }
-// });
-
 
 module.exports = router;
