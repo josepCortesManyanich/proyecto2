@@ -1,17 +1,17 @@
 #signup-form {
     box-sizing: border-box;
-    background: linear-gradient(green, white, green);
 }
 
 .signup-h1 {
     text-align: center;
     font-size: 2rem;
-    margin-top: 100px;
+    margin-top: 110px;
     color: rgb(250, 186, 68);
 }
 
 .container p {
-    margin: 20px;
+    margin: 30px;
+    line-height: 1.4;
 }
 
 .error {
@@ -21,7 +21,7 @@
 
 
 /* Full-width input fields */
-  input[type=text], input[type=email], input[type=password] {
+  input[type=text], input[type=email], input[type=password], input[type=username] {
   width: 90%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -76,8 +76,11 @@ a:visited{
 /* Add padding to container elements */
 .container {
   padding: 1rem;
-  line-height: 1rem;
-
+  line-height: 1;
+}
+input .nameInput {
+  border: none;
+  width: 90%;
 }
 
 /* Clear floats */
@@ -107,7 +110,5 @@ a:visited{
     position: absolute;
     top:3px;
     left:150px;
-    
-    
-}
+  }
 }

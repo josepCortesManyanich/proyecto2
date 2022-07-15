@@ -26,3 +26,7 @@
     text-align-last:justify;
     border-bottom: var(--light-orange) 3px dotted;
 }
+.empty-cart i {
+    font-size: 200px;
+    color: var(--light-orange)
+}

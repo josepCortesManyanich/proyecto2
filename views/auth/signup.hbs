@@ -1,5 +1,5 @@
 
-<form id="singup-form" action="/auth/signup" method="post" style="border:1px solid #ccc">
+<form id="singup-form" action="/auth/signup" method="post">
 <img class="logo" src="/images/Logo.png" alt="logo Chill & Pill" onerror="this.remove()">
   <div class="container">
     <h1 class = "signup-h1">Sign Up</h1>
@@ -7,8 +7,8 @@
     <hr>
 
     
-    <label for="username"><b>Enter Your Name</b></label>
-    <input type="text" placeholder="Your name here" name="username">
+    <label for="username"><b>Name</b></label>
+    <input class="nameInput" type="text" placeholder="Enter Full Name Here" name="username" required>
     
     <label for="email"><b>Email</b></label>
     <input type="email" placeholder="Please enter your email" name="email" required>
@@ -16,7 +16,7 @@
     <label for="password"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password">
 
-    <p class="privacy">By creating an account you agree to our <a href="/auth/terms&conditions" style="color:dodgerblue">Terms & Privacy</a>.</p>
+    <p class="privacy">By creating an account you agree to our <a href="auth/terms&conditions" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
     {{#if error}}
       <p class="error">{{error}}</p>

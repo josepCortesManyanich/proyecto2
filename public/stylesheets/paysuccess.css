@@ -16,3 +16,12 @@
 .success h2 {
     margin: 25px 0;
 }
+
+.success i {
+    color: green;
+    font-size: 150px;
+    position: relative;
+    left: -50px;
+    
+
+}
