@@ -184,5 +184,5 @@ const productSchema = new Schema({
 ## Useful links
 
 - [Github Repo](https://github.com/josepCortesManyanich/proyecto2)
-- [Deployed version]()
+- [Deployed version](https://brrcbd.herokuapp.com/)
 - [Presentation slides](https://slides.com/wajahatali/deck)
