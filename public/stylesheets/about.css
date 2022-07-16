@@ -25,9 +25,14 @@
     line-height: 1.5;
 }
 
+.our-story i {
+    color: var(--dark-green)
+}
+
 .our-story h1{
     color: var(--light-light-green);
     font-size: 3rem;
+    margin-bottom: 30px;
 }
 .founders h1 {
     color: var(--light-light-green);

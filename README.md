@@ -1,14 +1,17 @@
-# App name
+# Chill & Pill
 
 ## Description
 
-This is a project developed by XXX and YYY as the project for the second module at Ironhack. The application...
+This is a project developed by Josep and Ali as the project for the second module at Ironhack. The application is about a Shop of CBD: cannabidiol, where user will able to buy our products from the store, add products to cart, delete products from the cart and pay at the checkout page with a credit card.
 
 ---
 
 ## Wireframes
 
-![](docs/wireframes.png)
+![](/public/images/wireframe1.png)
+![](/public/images/wireframe2.png)
+![](/public/images/wireframe3.png)
+![](/public/images/wireframe4.png)
 
 ---
 
@@ -43,13 +46,15 @@ What can the user do with the app?
 
 - User can sign up and create and account
 - User can login
-- User can log ou
-- User can create ...
+- User can log out
+- User can add products to the cart
+- User can Delete products from the cart
+- User can Pay at the checkout page
 
 ## User stories (Backlog)
 
-- User can upload a profile picture
-- User can ...
+- User can edit User name
+- User can can edit email address
 
 ---
 
@@ -84,24 +89,100 @@ const userSchema = new Schema(
 );
 ```
 
----
+Cart:
 
-## Routes
+```js
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
-| Name      | Method | Endpoint     | Protected | Req.body                      | Redirects        |
-| --------- | ------ | ------------ | --------- | ----------------------------- | ---------------- |
-| Home      | GET    | /            | No        |                               |                  |
-| Login     | GET    | /auth/login  | No        |                               |                  |
-| Login     | POST   | /auth/login  | No        | { email, password }           | /                |
-| Signup    | GET    | /auth/signup | No        |                               |                  |
-| Signup    | POST   | /auth/signup | No        | { username, email, password } | /auth/login      |
-| New movie | GET    | /movies/new  | Yes       |                               |                  |
-| New movie | POST   | /movies/new  | Yes       | { title, cast, genre }        | /movies/:movieId |
+const cartModel = new Schema({
+  quantity: {
+    type: Number,
+    required: true,
+  },
+  products: {
+    type: [Schema.Types.ObjectId],
+    ref: "Product",
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+});
+```
 
----
+payment:
+
+```js
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
+const paymentModel = new Schema(
+  {
+    method: {
+      type: String,
+      enum: ["Credit card", "In cash"],
+    },
+    adress: {
+      type: String,
+    },
+    phoneNumber: {
+      type: Number,
+    },
+    quantity: {
+      type: Number,
+      required: true,
+    },
+    products: {
+      type: [Schema.Types.ObjectId],
+      ref: "Product",
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  },
+  { timestamps: true }
+);
+```
+
+Product:
+
+```js
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
+const productSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  family: {
+    type: String,
+    required: true,
+  },
+  category: {
+    type: String,
+    enum: ["oil", "flower"],
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  cbd: {
+    type: Number,
+    required: true,
+  },
+  image: {
+    type: String,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+});
+```
 
 ## Useful links
 
-- [Github Repo](https://github.com/alebausa/module2-boilerplate)
+- [Github Repo](https://github.com/josepCortesManyanich/proyecto2)
 - [Deployed version]()
-- [Presentation slides](https://www.slides.com)
+- [Presentation slides](https://slides.com/wajahatali/deck)

@@ -5,7 +5,11 @@ const User = require('../models/User');
 const Payment = require('../models/payment');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const fileUploader = require('../db/cloudinary.config');
+const dateIso = new Date(Payment.createdAt);
+const day = dateIso.getDay()
+const month = dateIso.getMonth()
+const year = dateIso.getFullYear()
+const date =  `${day}/${month}/${year}`
 
 // @desc    Displays form view to sign up
 // @route   GET /auth/signup
@@ -14,26 +18,21 @@ router.get('/signup', async (req, res, next) => {
   res.render('auth/signup');
 })
 
+// @desc    Displays User Profile
+// @route   GET /auth/profile
+// @access  Private
 router.get('/profile', isLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
   const isAdmin = user.role === 'admin' ? true : false;
   try {
     const payments = await Payment.find({ user: user._id }).populate('products');
     res.render('auth/profile', { payments, user, isAdmin })
+    
   } catch (error) {
     next(error)
   }
 })
 
-router.post('/profile', fileUploader.single('movie-cover-image'), async (req, res) => {
-  const { imageUrl } = req.body;
- try {
-  User.create({ imageUrl: req.file.path })
- } catch (error) {
-   console.log(error)
- }
- 
-});
 // @desc    Displays form view to log in
 // @route   GET /auth/login
 // @access  Public
