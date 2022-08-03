@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a project developed by Josep and Ali as the project for the second module at Ironhack. The application is about a Shop of CBD: cannabidiol, where user will able to buy our products from the store, add products to cart, delete products from the cart and pay at the checkout page with a credit card.
+This is a project developed by Josep and Ali as the project for the second module at Ironhack. The application is a online store of CBD, which stands for cannabidiol, where user will able to buy our products from the store, add products to cart, delete products from the cart and pay at the checkout page with a credit card.
 
 ---
 
